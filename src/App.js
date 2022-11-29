@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import LonDetail from './pages/LonDetail.js'
+import JudgeStep1 from './pages/JudgeStep1.js'
 
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import JudgeStep1Data from './pages/JudgeStep1';
 
 function App() {
 
@@ -24,7 +26,7 @@ function App() {
       }} to="/">사전안내</Link> ▷	▶
       <Link onClick={()=>{
 
-      }} to="/">심사준비 1단계</Link> ▷	▶
+      }} to="/judgestep1">심사준비 1단계</Link> ▷	▶
       <Link onClick={()=>{
 
       }} to="/">심사준비 2단계</Link> ▷	▶
@@ -37,7 +39,8 @@ function App() {
       }} to="/"></Link>
       <Routes>
         <Route path="/londetail" element={ <LonDetail/> } />
-        <Route path="/about" element={ <div></div> } />
+        
+        <Route path="/judgestep1" element={ <JudgeStep1/> } />
       </Routes>
     </div>
   );

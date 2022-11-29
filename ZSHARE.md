@@ -4,6 +4,7 @@
 git switch main
 git pull main
 git branch 브랜치명
+git switch 브랜치명
 
 작업 후 머지
 main브랜치 한번 확인후
