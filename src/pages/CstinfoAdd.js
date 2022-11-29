@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import data from '../json/cstinfoAddData';
 
-function CstinfoAdd() {
+function CstInfoAdd() {
 
     let jsonDetail = [];
     jsonDetail = data;
@@ -32,4 +32,4 @@ function CstinfoAdd() {
     );
 }
 
-export default CstinfoAdd;
+export default CstInfoAdd;

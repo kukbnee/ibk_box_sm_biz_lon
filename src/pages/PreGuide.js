@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 
-function Preinfo() {
+function PreGuide() {
     const [checkedButtons, setCheckedButtons] = useState([]);
     const [disabled, setDisabled] = useState(false);
 
@@ -69,4 +69,4 @@ function Preinfo() {
     );
 }
 
-export default Preinfo;
+export default PreGuide;

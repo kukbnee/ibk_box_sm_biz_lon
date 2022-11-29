@@ -2,9 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import LonDetail from './pages/LonDetail.js'
 import JudgeStep1 from './pages/JudgeStep1.js'
+import CstInfoAdd from './pages/CstInfoAdd.js';
+import PreGuide from './pages/PreGuide.js';
 
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
-import JudgeStep1Data from './pages/JudgeStep1';
+
 
 function App() {
 
@@ -19,11 +21,11 @@ function App() {
 
       <Link onClick={()=>{
 
-      }} to="/cstinfoAdd">고객정보등록</Link> ▷	▶
+      }} to="/cstinfoadd">고객정보등록</Link> ▷	▶
       
       <Link onClick={()=>{
 
-      }} to="/">사전안내</Link> ▷	▶
+      }} to="/preguide">사전안내</Link> ▷	▶
       <Link onClick={()=>{
 
       }} to="/judgestep1">심사준비 1단계</Link> ▷	▶
@@ -39,7 +41,8 @@ function App() {
       }} to="/"></Link>
       <Routes>
         <Route path="/londetail" element={ <LonDetail/> } />
-        
+        <Route path="/cstinfoadd" element={ <CstInfoAdd/> } />
+        <Route path="/preguide" element={ <PreGuide/> } />
         <Route path="/judgestep1" element={ <JudgeStep1/> } />
       </Routes>
     </div>
