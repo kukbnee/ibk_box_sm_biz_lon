@@ -12,3 +12,7 @@ git rebase main
 git switch main
 git merge 브랜치명
 
+[redux state변경 방법]
+1. state 수정해주는 함수 만들기
+2. export
+3. dispatch(수정해주는 함수호출)
