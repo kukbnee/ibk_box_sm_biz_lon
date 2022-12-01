@@ -5,6 +5,7 @@ import CstInfoAdd from './pages/CstInfoAdd.js';
 import PreGuide from './pages/PreGuide.js';
 import JudgeStep1 from './pages/JudgeStep1.js'
 import JudgeStep2 from './pages/JudgeStep2.js'
+import JudgeStep3 from './pages/JudgeStep3.js'
 
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
@@ -35,7 +36,7 @@ function App() {
       }} to="/judgestep2">심사준비 2단계</Link> ▷	▶
       <Link onClick={()=>{
 
-      }} to="/">심사준비 3단계</Link> ▷	▶
+      }} to="/judgestep3">심사준비 3단계</Link> ▷	▶
       
       <Link onClick={()=>{
 
@@ -45,7 +46,8 @@ function App() {
         <Route path="/cstinfoadd" element={ <CstInfoAdd/> } />
         <Route path="/preguide" element={ <PreGuide/> } />
         <Route path="/judgestep1" element={ <JudgeStep1/> } />
-        <Route path="/judgestep1" element={ <JudgeStep2/> } />
+        <Route path="/judgestep2" element={ <JudgeStep2/> } />
+        <Route path="/judgestep3" element={ <JudgeStep3/> } />
       </Routes>
     </div>
   );

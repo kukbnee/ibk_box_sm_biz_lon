@@ -21,8 +21,8 @@ function JudgeStep1Data() {
     let dispatch = useDispatch();
 
     
-    let a = useSelector((state) => state.answerStep1 );
-    console.log(a);
+    let arrAnswer = useSelector((state) => state.answerStep1 );
+    console.log(arrAnswer);
     return (
         <Table bordered size="sm">
         <tbody>
@@ -31,7 +31,7 @@ function JudgeStep1Data() {
                 return (
                     <tr>
                         <td align='left'>
-                            {data.id}. {data.title} <br/>
+                            {data.id + 1}. {data.title} <br/>
                             <ItemForm data={data}/>
                         </td>
                     </tr>
@@ -40,7 +40,7 @@ function JudgeStep1Data() {
         }    
             <tr>
                 <td>
-                    <Button variant="primary" onClick={()=>{dispatch(changeAnswer())}}>다음</Button>
+                    <Button variant="primary" onClick={()=>{console.log(arrAnswer)}}>다음</Button>
                 </td>
             </tr>
         </tbody>
@@ -49,10 +49,10 @@ function JudgeStep1Data() {
 }
 
 function ItemForm(props) {
-
+    let dispatch = useDispatch();
     let [selCrdBru, setSelCrdBru] = useState("평가기관 선택");
     let [selEmail, setSelEmail] = useState("직접입력");
-    let [stlEmailTxt, setStlEmailTxt] = useState("none");
+    let [stlEmailTxt, setStlEmailTxt] = useState("block");
 
     if(props.data.type == "select") {
         return (
@@ -68,7 +68,15 @@ function ItemForm(props) {
                             id={data.id}
                             label={data.value}
                             onClick={(e)=>{
-                              
+                                if("on" == e.target.value) {
+                                    let obj = {
+                                        idx : props.data.id,
+                                        id : data.id,
+                                        value : data.value
+                                    }
+                                    dispatch(changeAnswer(obj));
+                                }
+                                
                                 
                             }}
                             />
@@ -81,7 +89,7 @@ function ItemForm(props) {
             </Form>
         );
     }else if(props.data.type == "text") {
-        if(props.data.id == 2) {
+        if(props.data.id == 1) {
             return (
                 <>
                 <InputGroup size="sm" className="mb-3">
@@ -95,12 +103,23 @@ function ItemForm(props) {
                 
                 </>
             );
-        }else if(props.data.id == 10) {
+        }else if(props.data.id == 9) {
             
             return (
                 <>
                 <InputGroup>
-                    <InputGroup.Radio aria-label="Radio button for following text input" name="creditScore" />
+                    <InputGroup.Radio aria-label="Radio button for following text input" name="creditScore" 
+                    onClick={(e)=>{
+                        if("on" == e.target.value) {
+                            let obj = {
+                                idx : props.data.id,
+                                id : data.id,
+                                value : data.value
+                            }
+                            dispatch(changeAnswer(obj));
+                        }
+
+                    }}/>
                     <DropdownButton
                     variant="outline-secondary"
                     title={selCrdBru}

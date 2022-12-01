@@ -1,6 +1,6 @@
 let data = [
     {
-        id : 1,
+        id : 0,
         title : "전문금융 소비자 여부",
         standardVal : "",
         type : "select",
@@ -17,7 +17,7 @@ let data = [
 
     },
     {
-        id : 2,
+        id : 1,
         title : "연령",
         standardVal : "",
         type : "text",
@@ -31,7 +31,7 @@ let data = [
 
     },
     {
-        id : 3,
+        id : 2,
         title : "대출용도",
         standardVal : "",
         type : "select",
@@ -48,7 +48,7 @@ let data = [
 
     },
     {
-        id : 4,
+        id : 3,
         title : "보유자산",
         standardVal : "현재기준",
         type : "select",
@@ -69,7 +69,7 @@ let data = [
 
     },
     {
-        id : 5,
+        id : 4,
         title : "현재소득",
         standardVal : "최근 1년 기준",
         type : "select",
@@ -90,7 +90,7 @@ let data = [
 
     },
     {
-        id : 6,
+        id : 5,
         title : "미래예상소득",
         standardVal : "",
         type : "select",
@@ -111,7 +111,7 @@ let data = [
 
     },
     {
-        id : 7,
+        id : 6,
         title : "부채",
         standardVal : "",
         type : "select",
@@ -132,7 +132,7 @@ let data = [
 
     },
     {
-        id : 8,
+        id : 7,
         title : "고정지출",
         standardVal : "",
         type : "select",
@@ -153,7 +153,7 @@ let data = [
 
     },
     {
-        id : 9,
+        id : 8,
         title : "연체 정보",
         standardVal : "",
         type : "select",
@@ -174,7 +174,7 @@ let data = [
 
     },
     {
-        id : 10,
+        id : 9,
         title : "신용점수",
         standardVal : "",
         type : "text",
@@ -182,7 +182,7 @@ let data = [
 
     },
     {
-        id : 11,
+        id : 10,
         title : "변제방법",
         standardVal : "",
         type : "select",
@@ -207,7 +207,7 @@ let data = [
 
     },
     {
-        id : 12,
+        id : 11,
         title : "서류 교부용 이멜일 주소 입력",
         standardVal : "",
         type : "text",

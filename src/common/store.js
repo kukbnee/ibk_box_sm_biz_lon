@@ -4,8 +4,9 @@ let answerStep1 = createSlice({
   name : 'answerStep1',
   initialState : [99,99,99,99,99,99,99,99,99,99,99,99],
   reducers : {
-    changeAnswer(state){
-      return state.concat([1,2,3]);
+    changeAnswer(state, props){
+      state[props.payload.idx] = props.payload
+      return state;
     }
   }
 });
