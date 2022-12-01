@@ -6,12 +6,14 @@ import { useState } from 'react';
 import data from '../json/judgeStep2Data.js';
 import Button from 'react-bootstrap/Button';
 
-function ValueCheck() {
+function ValueCheck(props) {
     let valueList = [];
     valueList = data;
-    if(true) {
-        alert=('adfad');
-    }
+    {valueList.map(function(data,idx){
+        if(data.type == "select" && data.id == 1){
+            console.log(data)
+        }
+    })}
 }
 
 function JudgeStep2Data() {
@@ -33,8 +35,10 @@ function JudgeStep2Data() {
 
         }
     };
+
     const isAllChecked = checkedButtons.length === 1;
 
+    
     return (
         <>
             <Table bordered size="sm">
@@ -66,7 +70,7 @@ function JudgeStep2Data() {
                     name="checkbox"
                     label="위 내용을 확인하였습니다." />
             </div>
-            <button disabled={disabled} onClick={ValueCheck}>확인</button>
+            <button disabled={disabled}>확인</button>
             
         </>
     );
@@ -74,6 +78,7 @@ function JudgeStep2Data() {
 
 
 function ItemForm(props) {
+    
 
     console.log(props.data.type);
     if (props.data.type === "select") {
@@ -82,9 +87,9 @@ function ItemForm(props) {
                 <Form>
                     <div key="default-button" className="mb-3">
                         {
-                            props.data.buttonList.map(function (data) {
+                            props.data.buttonList.map(function (data, idx) {
                                 return (
-                                    <Button variant='primary' id={data.value} value={data.value}>
+                                    <Button variant='primary' onClick={ValueCheck}>
                                         {data.value}
                                     </Button>
                                 );
