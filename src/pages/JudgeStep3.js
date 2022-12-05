@@ -1,11 +1,11 @@
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
 import data from '../json/judgeStep3Data.js';
 import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
-import PdfView from '../common/PdfView.js';
+//import PdfView from '../common/PdfView.js';
 
 function JudgeStep3() {
 
@@ -32,7 +32,7 @@ function JudgeStep3() {
                             {data.contents}
                         </th>
                         <td>{data.data}<br/>
-                        <Button variant='primary' onClick={PdfView}>동의</Button>
+                        <Button variant='primary' >동의</Button>
                         </td>
                         {/**내용보기 Modal로 pdf파일 뷰어 출력 데이터??where*/}
                         

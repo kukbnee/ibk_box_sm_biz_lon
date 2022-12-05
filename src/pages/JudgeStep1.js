@@ -4,8 +4,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import data from '../json/judgeStep1Data.js';
+import judgeData from '../json/judgeStep1Data.js';
 import cmmData from '../common/cmmData.js';
 
 import { useState } from 'react';
@@ -16,35 +17,56 @@ import { changeAnswer } from '../common/store.js';
 
 function JudgeStep1Data() {
     
-    let jsonItemList = [];
-    jsonItemList = data;
-    let dispatch = useDispatch();
+    let jsonItemList = judgeData;
 
-    
+    let dispatch = useDispatch();
     let arrAnswer = useSelector((state) => state.answerStep1 );
     console.log(arrAnswer);
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
+        <>
         <Table bordered size="sm">
         <tbody>
         {
             jsonItemList.map(function(data, idx) {
                 return (
                     <tr>
-                        <td align='left'>
+                        <td align='left' colSpan={2}>
                             {data.id + 1}. {data.title} <br/>
                             <ItemForm data={data}/>
                         </td>
                     </tr>
                 )
             })
-        }    
+        }   
             <tr>
-                <td>
-                    <Button variant="primary" onClick={()=>{console.log(arrAnswer)}}>다음</Button>
+                <td align='left'>
+                    <b>유의사항</b>
+                </td>
+                <td align='right'>
+                    <Button variant="primary" onClick={()=>{handleShow()}}>내용보기</Button>
+                </td>
+            </tr>
+            <tr>
+                <td align='left' colSpan={2}>
+                    ㆍ보유자산, 부채 항목은 작성일 기준 / 현재소득은 최근 1년기준으로 작성<br/>
+                    ㆍ본 확인서는 『금융소비자 보호에 관한 법률』 제17조 및 제18조에 따라 작성되었습니다.
+                </td>
+            </tr>
+            <tr>
+                <td colSpan={2}>
+                    <Button variant="primary" onClick={()=>{validCheck(arrAnswer)}}>다음</Button>
                 </td>
             </tr>
         </tbody>
       </Table>
+      <NotiModal show={show} handleClose={handleClose} handleShow={handleShow}></NotiModal>
+      </>
     );
 }
 
@@ -113,8 +135,8 @@ function ItemForm(props) {
                         if("on" == e.target.value) {
                             let obj = {
                                 idx : props.data.id,
-                                id : data.id,
-                                value : data.value
+                                id : judgeData.id,
+                                value : judgeData.value
                             }
                             dispatch(changeAnswer(obj));
                         }
@@ -180,10 +202,63 @@ function ItemForm(props) {
     }
 }
 
+function NotiModal(props) {
 
-function validCheck() {
+    return (
+      <Modal show={props.show} onHide={props.handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>유의사항</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>본인은 은행에 제공한 적합성·적정성 관련 정보와 관련하여 다음과 같은 사항을 확인합니다.
+
+<br/><br/>1. 적합성·적정성 관련 정보는 본인의 연령, 대출목적(용도) 등의 정보를 정확히 알려드린 것입니다.
+
+<br/><br/>2. 적합성·적정성 판단결과 "적합"의 의미는 고객님과 여신 상담이 가능한 것을 말하며, 여신신청에 대한 승인을 
+의미하는 것은 아닙니다.
+
+<br/><br/>3. 본인이 제공한 정보가 정확하지 않거나, 정보에 
+변경사항이 발생한 경우에는 적합성·적정성 판단이 
+달라질 수 있음을 설명 받았습니다. 
+
+<br/><br/>4. 상기 목적을 위해 본인의 개인(신용)정보를 수집, 이용 
+또는 제공하는 것에 동의합니다.
+</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={props.handleClose}>
+            확인
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+}
+
+function validCheck(props) {
+    let title = "";
+    let index = 0;
+    let verb = "하시기 바랍니다.";
     let msg = "";
-
+    
+    for(let idx=0; idx<props.length; idx++){
+        if(props[idx] == "99") {
+            title = judgeData[idx].title;
+            index = idx;
+            let josa = "";
+            if(checkBatchimEnding(title)) {
+                josa = "을 ";
+            }else {
+                josa = "를 ";
+            }
+            if(index == 1 || index == 9 || index ==11) {
+                verb = "입력" + verb;
+            }else {
+                verb = "선택" + verb;
+            }
+           
+            msg = title + josa + verb;
+            break; 
+        }
+    }
+    alert(msg);
 }
 
 /**
