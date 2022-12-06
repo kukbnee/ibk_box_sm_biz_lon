@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import LonDetail from './pages/LonDetail.js'
+import ProdGuide from './pages/ProdGuide.js'
 import CstInfoAdd from './pages/CstInfoAdd.js';
 import PreGuide from './pages/PreGuide.js';
 import JudgeStep1 from './pages/JudgeStep1.js'
@@ -19,11 +19,10 @@ function App() {
       }} to="/">홈</Link> ▷	▶
       <Link onClick={()=>{
 
-      }} to="/londetail">상품상세</Link> ▷	▶
-
+      }} to="/cstinfoadd">고객정보등록</Link> ▷	▶
       <Link onClick={()=>{
 
-      }} to="/cstinfoadd">고객정보등록</Link> ▷	▶
+      }} to="/prodguide">상품안내</Link> ▷	▶
       
       <Link onClick={()=>{
 
@@ -42,8 +41,8 @@ function App() {
 
       }} to="/"></Link>
       <Routes>
-        <Route path="/londetail" element={ <LonDetail/> } />
         <Route path="/cstinfoadd" element={ <CstInfoAdd/> } />
+        <Route path="/prodguide" element={ <ProdGuide/> } />
         <Route path="/preguide" element={ <PreGuide/> } />
         <Route path="/judgestep1" element={ <JudgeStep1/> } />
         <Route path="/judgestep2" element={ <JudgeStep2/> } />

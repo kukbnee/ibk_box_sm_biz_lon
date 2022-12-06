@@ -1,9 +1,9 @@
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import data from '../json/lonDetailData.js';
+import data from '../json/prodGuideData.js';
 
-function LonDetail() {
+function ProdGuide() {
 
     let jsonDetail = [];
     jsonDetail = data;
@@ -32,4 +32,4 @@ function LonDetail() {
     );
 }
 
-export default LonDetail;
+export default ProdGuide;
