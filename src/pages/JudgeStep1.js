@@ -9,19 +9,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import judgeData from '../json/judgeStep1Data.js';
 import cmmData from '../common/cmmData.js';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAnswer } from '../common/store.js';
 
-// let [arrAnswer, setArrAnswer] = useState([99,99,99,99,99,99,99,99,99,99,99,99]);
+// let [answer, setAnswer] = useState([99,99,99,99,99,99,99,99,99,99,99,99]);
 
 function JudgeStep1Data() {
-    
+    let [answer, setAnswer] = useState([99,99,99,99,99,99,99,99,99,99,99,99]);
+    useEffect(()=>{
+
+        console.log(answer);
+    },[answer]);
+
     let jsonItemList = judgeData;
 
     let dispatch = useDispatch();
     let arrAnswer = useSelector((state) => state.answerStep1 );
     console.log(arrAnswer);
+
+    
 
     const [show, setShow] = useState(false);
 
@@ -38,7 +45,7 @@ function JudgeStep1Data() {
                     <tr>
                         <td align='left' colSpan={2}>
                             {data.id + 1}. {data.title} <br/>
-                            <ItemForm data={data}/>
+                            <ItemForm data={data} answer={answer} setAnswer={setAnswer}/>
                         </td>
                     </tr>
                 )
@@ -96,7 +103,10 @@ function ItemForm(props) {
                                         id : data.id,
                                         value : data.value
                                     }
-                                    dispatch(changeAnswer(obj));
+                                    //dispatch(changeAnswer(obj));
+                                    let copy = [...props.answer];
+                                    copy[obj.idx] = obj;
+                                    props.setAnswer(copy);
                                 }
                                 
                                 
