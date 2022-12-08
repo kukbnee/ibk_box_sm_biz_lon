@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 import data from '../json/judgeStep2Data.js';
 import Button from 'react-bootstrap/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeAnswer } from '../common/store.js';
 
 function ValueCheck() {
     let valueList = [];
@@ -16,6 +18,11 @@ function ValueCheck() {
 
 function JudgeStep2Data() {
 
+    let dispatch = useDispatch();
+    let arrAnswer = useSelector((state) => state.answerStep1 );
+    console.log(arrAnswer);
+    
+    const [show, setShow] = useState(false);
     let jsonItemList = [];
     jsonItemList = data;
     const [checkedButtons, setCheckedButtons] = useState([]);
@@ -74,19 +81,31 @@ function JudgeStep2Data() {
 
 
 function ItemForm(props) {
-
-    console.log(props.data.type);
-    if (props.data.type === "select") {
+    let dispatch = useDispatch();
+    if (props.data.type == "select") {
         return (
             <>
                 <Form>
-                    <div key="default-button" className="mb-3">
+                    <div key="default-radio" className="mb-3">
                         {
                             props.data.buttonList.map(function (data) {
                                 return (
-                                    <Button variant='primary' id={data.value} value={data.value}>
-                                        {data.value}
-                                    </Button>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="radio-group"
+                                    id={data.id}
+                                    label={data.value}
+                                    onClick={(e)=>{
+                                        if("on" == e.target.value){
+                                            let obj = {
+                                                idx : props.data.id,
+                                                id: data.id,
+                                                value: data.value
+                                            }
+                                            dispatch(changeAnswer(obj));
+                                        }
+                                    }}>
+                                    </Form.Check>
                                 );
                             })
                         }
