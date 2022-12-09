@@ -52,7 +52,7 @@ function JudgeStep1Data() {
                             return (
                                 <tr>
                                     <td align='left' colSpan={2}>
-                                        {data.id + 1}. {data.title} <br />
+                                        <b>{data.id + 1}. {data.title}</b> <br />
                                         <ItemForm data={data} answer={answer} setAnswer={setAnswer} />
                                     </td>
                                 </tr>
@@ -145,7 +145,7 @@ function ItemForm(props) {
                             aria-label="Small"
                             aria-describedby="inputGroup-sizing-sm"
                         />
-                        <InputGroup.Text style={{Style}}>세</InputGroup.Text>
+                        <InputGroup.Text style={Style}>세</InputGroup.Text>
                     </InputGroup>
 
                 </>

@@ -1,28 +1,17 @@
+import JudgeStepCss from '../css/JudgeStep2.css';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-
 import data from '../json/judgeStep2Data.js';
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAnswer } from '../common/store.js';
 
-function ValueCheck() {
-    let valueList = [];
-    valueList = data;
-    if(true) {
-        alert=('adfad');
-    }
-}
 
 function JudgeStep2Data() {
 
-    let dispatch = useDispatch();
-    let arrAnswer = useSelector((state) => state.answerStep1 );
-    console.log(arrAnswer);
-    
-    const [show, setShow] = useState(false);
+
     let jsonItemList = [];
     jsonItemList = data;
     const [checkedButtons, setCheckedButtons] = useState([]);
@@ -42,16 +31,21 @@ function JudgeStep2Data() {
     };
     const isAllChecked = checkedButtons.length === 1;
 
+    const [isCheck, setIsCheck] = useState(false)
+
     return (
         <>
-            <Table bordered size="sm">
+            <h2 >
+                심사준비 2단계
+            </h2>
+            <Table className="TotalSection">
                 <tbody>
                     {
                         jsonItemList.map(function (data, idx) {
                             return (
                                 <tr>
-                                    <td>
-                                        {data.id}. {data.title} <br />
+                                    <td align='left' colSpan={2}>
+                                        {data.id} {data.title} <br />
                                         {data.standardVal}<br />
                                         <ItemForm data={data} />
                                     </td>
@@ -59,22 +53,21 @@ function JudgeStep2Data() {
                             )
                         })
                     }
+                    <td>
+                        {data.title}
+                    </td>
+                        <Form.Check onChange={e => {
+                            changeHandler(e.currentTarget.checked, 'check');
+                        }}
+                            checked={checkedButtons.includes('check') ? true : false}
+                            type="checkbox"
+                            name="checkbox"
+                            label="위 내용을 확인하였습니다." />
+                    <Button variant='primary' disabled={disabled}>확인</Button>
                 </tbody>
             </Table>
-            <td>
-                {data.title}
-            </td>
-            <div key="default-radio" className="mb-3">
-                <Form.Check onChange={e => {
-                    changeHandler(e.currentTarget.checked, 'check');
-                }}
-                    checked={checkedButtons.includes('check') ? true : false}
-                    type="checkbox"
-                    name="checkbox"
-                    label="위 내용을 확인하였습니다." />
-            </div>
-            <button disabled={disabled} onClick={ValueCheck}>확인</button>
-            
+
+
         </>
     );
 }
@@ -90,21 +83,20 @@ function ItemForm(props) {
                         {
                             props.data.buttonList.map(function (data) {
                                 return (
-                                    <Form.Check 
-                                    type="radio"
-                                    name="radio-group"
-                                    id={data.id}
-                                    label={data.value}
-                                    onClick={(e)=>{
-                                        if("on" == e.target.value){
-                                            let obj = {
-                                                idx : props.data.id,
-                                                id: data.id,
-                                                value: data.value
+                                    <Form.Check
+                                        type="radio"
+                                        name="radio-group"
+                                        id={data.id}
+                                        label={data.value}
+                                        onClick={(e) => {
+                                            if ("on" == e.target.value) {
+                                                let obj = {
+                                                    idx: props.data.id,
+                                                    id: data.id,
+                                                    value: data.value
+                                                }
                                             }
-                                            dispatch(changeAnswer(obj));
-                                        }
-                                    }}>
+                                        }}>
                                     </Form.Check>
                                 );
                             })
