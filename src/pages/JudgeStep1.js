@@ -59,13 +59,11 @@ function JudgeStep1Data() {
                             )
                         })
                     }
-                    <Accordion>
+                    <Accordion >
                     <Accordion.Item eventKey="0">
                     <Accordion.Header><b>유의사항</b></Accordion.Header>
                     <Accordion.Body className='Noticon'>
-                        <td>
-                            <Button className='showcontent' variant="primary" onClick={() => { handleShow() }}>내용보기</Button>
-                        </td>
+                        
                     <tr>
                         <td  >
                             ㆍ보유자산, 부채 항목은 작성일 기준 / 현재소득은 최근 1년기준으로 작성<br />
@@ -74,7 +72,12 @@ function JudgeStep1Data() {
                     </tr>
                     <tr>
                         <td>
-                            <Button className='JudgeStep1Button' variant="primary" onClick={() => { validCheck(arrAnswer) }}>다음</Button>
+                            <Button className='showcontent' style={{width: 480, marginLeft: 10}} variant="primary" onClick={() => { handleShow() }}>내용보기</Button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <Button variant="primary" style={{width: 480, marginLeft: 10}} onClick={() => { validCheck(arrAnswer) }}>다음</Button>
                         </td>
                     </tr>
                     </Accordion.Body>

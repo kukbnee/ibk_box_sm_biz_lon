@@ -1,18 +1,9 @@
-.TotalSection{
+.TotalSection2{
     width: 50%;
     margin-left: 25%;
-    text-align: center;
-    margin-top: 2%;
-
 }
-h2{
+#judge2H2{
     margin-top: 5%;
 }
-.JudgeStep1Button{ 
-    width: 110%;
-}
-.Noticon{
-    text-align: left;
-    margin: 0 auto;
-    width: 100%;
-}
+
+

@@ -1,10 +1,18 @@
-.TotalSection{
+.TotalSection3{
     width: 50%;
     margin-left: 25%;
     margin-top: 2%;
     
 
 }
-h2{
+.judge3H2{
+    margin-top: 5%;
+    margin-left: 25%;
+}
+.nextButton{
+    width: 128%;
+    
+}
+tbody{
     margin-top: 5%;
 }
