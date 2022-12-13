@@ -21,7 +21,7 @@ function Header(props) {
 
   let [pageShow, setPageShow] = useState(false);
   let [stepShow, setStepShow] = useState(false);
-
+  
   //마운트시 최초한번 실행
   useEffect(()=>{
     (props.pageId!=null)?setPageShow(true):setPageShow(false);
@@ -34,7 +34,7 @@ function Header(props) {
     <Navbar bg="primary" variant="dark" style={{display: pageShow?'':'none'}}>
       <Container>
         <Nav> </Nav>
-        <Nav style={{color: 'white', align: 'center'}} className='justify-content-center'>{pageList[0].name}</Nav>
+        <Nav style={{color: 'white', align: 'center'}} className='justify-content-center'>{pageList.find((data) => data.id === props.pageId).name}</Nav>
         <Nav> </Nav>
       </Container>
     </Navbar>
