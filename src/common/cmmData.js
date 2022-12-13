@@ -35,7 +35,35 @@ https://www.ibk.co.kr/fup/customer/form/2022053115201429260014431270238.pdf
 개업일 1년 미만은 신청 불가합니다.
 최근 1년 이내 대표자(실제경영자)가 변경된 경우 신청이 불가합니다.
 */
-let crdBruList = [
+const arrStepNm = ["정보제공동의", "본인인증", "서류수집", "서류전송현황", "정보입력", "사전심사신청"];
+const pageList = [
+    {
+      id: 1,
+      name: "고객정보 등록"
+    }, 
+    {
+      id: 2,
+      name: "상품안내"
+    }, 
+    {
+      id: 3,
+      name: "대출신청 전 사전안내"
+    },
+    {
+      id: 4,
+      name: "사전심사",
+    },
+    {
+      id: 5,
+      name: "신청 중인 대출 진행/조회/취소",
+    },
+    {
+      id: 6,
+      name: "대출신청",
+    }
+
+];
+const crdBruList = [
     {
         id : 1,
         name : "나이스",
@@ -48,7 +76,7 @@ let crdBruList = [
     }
 ];
 
-let emailList = [
+const emailList = [
     {
         id : 1,
         name : "",
@@ -166,6 +194,8 @@ function cmmData(props) {
     switch(props) {
         case 'crdBru' : return crdBruList;
         case 'email'  : return emailList;
+        case 'stepNm' : return arrStepNm;
+        case 'page'   : return pageList;
         //case 'valid1' : return validList1;
         //case 'valid2' : return validlist2;
     }

@@ -1,30 +1,50 @@
-import { Nav, Navbar } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+
+import cmmData from '../common/cmmData.js';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
+ * 각 화면 제목, 진행상태 띠 출력
  * 사용법 : 
  * 1. import Header from 'Header.js';
  * 2. 해당화면 상단에 컴포넌트로 호출 
- * 3. 단계코드 props전송 ex)<Header stepCd={2}/> 
- * 4. 단계코드
- *  1: "정보제공동의", 2: "본인인증", 3: "서류수집", 4: "서류전송현황", 5: "정보입력", 6: "사전심사신청"
+ * 3. 페이지아이디, 단계코드 props전송 ex)<Header pageId={1} stepCd={2}/> 
+ * 단계코드, 페이지아이디 cmmData.js 참고
+ *
  */
 function Header(props) {
 
-  /**
-   * 0. 진행단계는 각 화면에서 부여
-   * 1. 세션체크
-   * 2. 진행현황 코드값 request
-   * 3.  
-   */
-  const arrStepNm = ["정보제공동의", "본인인증", "서류수집", "서류전송현황", "정보입력", "사전심사신청"];
-  
+  const arrStepNm = cmmData("stepNm");
+  const pageList = cmmData("page");
+
+  let [pageShow, setPageShow] = useState(false);
+  let [stepShow, setStepShow] = useState(false);
+
+  //마운트시 최초한번 실행
+  useEffect(()=>{
+    (props.pageId!=null)?setPageShow(true):setPageShow(false);
+    (props.stepCd!=null)?setStepShow(true):setStepShow(false);
+  },[]);
+
   return (
-    <div style={{
+    <>
+    
+    <Navbar bg="primary" variant="dark" style={{display: pageShow?'':'none'}}>
+      <Container>
+        <Nav> </Nav>
+        <Nav style={{color: 'white', align: 'center'}} className='justify-content-center'>{pageList[0].name}</Nav>
+        <Nav> </Nav>
+      </Container>
+    </Navbar>
+    
+    <Nav style={{
       textAlign: 'center',
       borderBottomStyle: 'solid',
-      borderWidth: 'thin'
+      borderWidth: 'thin',
+      display: stepShow?'':'none'
     }}>
-    <Nav>
       {
       arrStepNm.map((data, idx)=> {
         let num = idx + 1;
@@ -40,12 +60,11 @@ function Header(props) {
               <span style={{color: '#004C9D' }}>{num}</span>
             </Nav.Item>
             )
-        }
-        
+        } 
       })
       }
     </Nav>
-    </div>
+    </>
   );
 }
 
