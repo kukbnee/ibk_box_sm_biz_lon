@@ -1,12 +1,13 @@
 import JudgeStepCss from '../css/JudgeStep2.css';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import data from '../json/judgeStep2Data.js';
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAnswer } from '../common/store.js';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function JudgeStep2() {
 

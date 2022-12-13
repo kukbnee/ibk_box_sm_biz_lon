@@ -40,7 +40,6 @@ function JudgeStep1Data() {
     return (
         <>
          
-            
                 <h2 >
                     심사준비 1단계
                 </h2>

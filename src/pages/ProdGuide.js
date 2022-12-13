@@ -1,7 +1,9 @@
+import ProdGuideCss from '../css/ProdGuide.css';
 import Table from 'react-bootstrap/Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import data from '../json/prodGuideData.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function ProdGuide() {
 
@@ -9,14 +11,16 @@ function ProdGuide() {
     jsonDetail = data;
 
     return (
-      <Table striped bordered hover size="sm">
+      <Table className='ProdGuideCss'>
         <thead>
-          <tr>
+        <h2 className='ProdGuideh2'>상품 안내</h2>
+          
+        </thead>
+        <tbody>
+        <tr>
             <th>구분</th>
             <th>상세내용</th>
           </tr>
-        </thead>
-        <tbody>
         {
             jsonDetail.map(function(data, idx) {
                 return (
@@ -28,6 +32,9 @@ function ProdGuide() {
             })
         }    
         </tbody>
+        <Link onClick={() => {
+
+}} to="/preguide"><Button variant='primary' className='ProGuidebutton'>확인</Button></Link>
       </Table>
     );
 }

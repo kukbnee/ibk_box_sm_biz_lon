@@ -1,3 +1,4 @@
+import Judge3Css from '../css/JudgeStep3.css';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -5,6 +6,7 @@ import data from '../json/judgeStep3Data.js';
 import React, { useEffect, useRef, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Header from './Header.js';
 
 
 function JudgeStep3() {
@@ -30,6 +32,7 @@ function JudgeStep3() {
 
   return (
     <>
+    <Header stepCd={1}/>
     <Table className="TotalSection">
         <h2>정보제공동의 [필수] </h2>
           <b>대출 약정신청을 위해 아래 내용을 충분히 이해하신 후 동의하시기 바랍니다.</b>
