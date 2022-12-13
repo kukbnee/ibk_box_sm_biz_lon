@@ -21,7 +21,7 @@ function Header(props) {
 
   let [pageShow, setPageShow] = useState(false);
   let [stepShow, setStepShow] = useState(false);
-  props={pageId: 5, stepCd: 2};
+  
   //마운트시 최초한번 실행
   useEffect(()=>{
     (props.pageId!=null)?setPageShow(true):setPageShow(false);
