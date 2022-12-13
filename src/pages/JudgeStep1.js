@@ -1,4 +1,3 @@
-import JudgeStep1 from '../css/JudgeStep1.css';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
@@ -41,7 +40,7 @@ function JudgeStep1Data() {
         <>
          
             
-                <h2 >
+                <h2 className='judgestep1'>
                     심사준비 1단계
                 </h2>
             
@@ -72,12 +71,12 @@ function JudgeStep1Data() {
                     </tr>
                     <tr>
                         <td>
-                            <Button className='showcontent' style={{width: 480, marginLeft: 10}} variant="primary" onClick={() => { handleShow() }}>내용보기</Button>
+                            <Button className='showcontent' style={{width: 400, marginLeft: 10}} variant="primary" onClick={() => { handleShow() }}>내용보기</Button>
                         </td>
                         </tr>
                         <tr>
                         <td>
-                            <Button variant="primary" style={{width: 480, marginLeft: 10}} onClick={() => { validCheck(arrAnswer) }}>다음</Button>
+                            <Button variant="primary" style={{width: 400, marginLeft: 10}} onClick={() => { validCheck(arrAnswer) }}>다음</Button>
                         </td>
                     </tr>
                     </Accordion.Body>

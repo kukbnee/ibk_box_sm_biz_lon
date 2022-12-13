@@ -1,0 +1,25 @@
+.Prodguide {
+    width: 50%;
+    margin-left: 25%;
+    border: 1px solid #444444;
+    margin-top: 5%;
+}
+
+.h2prodguide{
+    margin-left: 230%;
+    width: 400%;
+    margin-top: 30%;
+}
+.prodguidebutton {
+    width: 850%;
+    text-align: center;
+}
+.prodtr{
+    border: 1px solid #444444;
+    margin-top: 20%;
+
+}
+.prodth,.prodtd {
+    
+    border: 1px solid #444444;
+}

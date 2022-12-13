@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Button from 'react-bootstrap/Button';
 import data from '../json/cstinfoAddData';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 function CstInfoAdd() {
 
@@ -9,13 +9,10 @@ function CstInfoAdd() {
     jsonDetail = data;
 
     return (
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th></th>
-            <th>IBK 온라인플랫폼 입점 소상공인 보증부대출 대상 고객 정보 등록</th>
-          </tr>
-        </thead>
+      <Table className='CsInfoAdd'>
+        
+            <h2 className='csinfoadd'>고객정보 등록</h2>
+  
         <tbody>
         {
             jsonDetail.map(function(data, idx) {
@@ -27,6 +24,14 @@ function CstInfoAdd() {
                 )
             })
         }
+        <tr>
+            <td>
+            <Link onClick={() => {
+                    }} to="/prodguide">
+              <Button variant="primary" className='csinfobutton'>다음</Button>
+              </Link>
+            </td>
+          </tr>
         </tbody>
       </Table>
     );
