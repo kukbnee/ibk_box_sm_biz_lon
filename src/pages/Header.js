@@ -46,11 +46,12 @@ function Header(props) {
       display: stepShow?'':'none'
     }}>
       {
+      
       arrStepNm.map((data, idx)=> {
         let num = idx + 1;
-        if(num === props.stepCd){
+        if(num === props.stepCd) {
           return (
-            <Nav.Item key={idx} style={{width: '150px', heigth: '20px', borderRadius: '50px', backgroundColor: '#004C9D', margin: '5px'}}>
+            <Nav.Item key={idx} style={{width: (data.length+1)*25+`px`, heigth: '20px', borderRadius: '50px', backgroundColor: '#004C9D', margin: '5px'}}>
               <span style={{color: 'white' }}>{num}. {data}</span>
             </Nav.Item>
           );
