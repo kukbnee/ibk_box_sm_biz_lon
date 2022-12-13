@@ -17,7 +17,7 @@ function Header(props) {
    * 3.  
    */
   const arrStepNm = ["정보제공동의", "본인인증", "서류수집", "서류전송현황", "정보입력", "사전심사신청"];
-  props = {stepCd: 2};
+  
   return (
     <div style={{
       textAlign: 'center',
