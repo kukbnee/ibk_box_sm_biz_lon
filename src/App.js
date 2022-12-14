@@ -6,6 +6,8 @@ import PreGuide from './pages/PreGuide.js';
 import JudgeStep1 from './pages/JudgeStep1.js'
 import JudgeStep2 from './pages/JudgeStep2.js'
 import JudgeStep3 from './pages/JudgeStep3.js'
+import Header from './pages/Header';
+import Footer from './pages/Footer';
 
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
@@ -41,12 +43,15 @@ function App() {
 
       }} to="/"></Link>
       <Routes>
+        <Route path="/header" element={ <Header/> } />
+        <Route path="/footer" element={ <Footer/> } />
         <Route path="/cstinfoadd" element={ <CstInfoAdd/> } />
         <Route path="/prodguide" element={ <ProdGuide/> } />
         <Route path="/preguide" element={ <PreGuide/> } />
         <Route path="/judgestep1" element={ <JudgeStep1/> } />
         <Route path="/judgestep2" element={ <JudgeStep2/> } />
         <Route path="/judgestep3" element={ <JudgeStep3/> } />
+        <Route path="*" element={<div>404</div>}/>
       </Routes>
     </div>
   );
