@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
-import { ButtonGroup, Button, Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
-
-import cmmData from '../common/cmmData.js';
+import { Button, Navbar } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * 각 화면 하단컴포넌트(버튼등) 출력
+ * 사용법 : 
+ * 1. import Footer from 'Footer.js';
+ * 2. 해당화면 하단에 컴포넌트로 호출 
+ * 3. props전송 ex)<Footer obj={{}} /> 
+ *  obj형식은 Footer.js참고
+ *
+ */
 function Footer(props) {
 
   const margin = {
@@ -15,10 +22,10 @@ function Footer(props) {
    * 각 컴포넌트에서 Footer에 보내는 props.obj의 propery 정의
    */
   const objVerif = {
-    type: "",
-    text: [],
-    link: "",
-    callbackId: function(){}
+    type: "",                 //ex)"button"
+    text: [],                 //ex)[확인,취소]
+    link: "",                 //ex)"/judgeStep3.js"
+    callbackId: function(){}  //각 컴포넌트에 버튼클릭에 대한 콜백함수명 (각 컴포넌트에서 정의한 콜백함수)
   }
   /**
    * 각 컴포넌트에서 받아온 props.obj 속성과 Footer에서 정의한 object 속성 비교검증
