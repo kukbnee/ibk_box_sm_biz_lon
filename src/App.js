@@ -47,6 +47,7 @@ function App() {
         <Route path="/judgestep1" element={ <JudgeStep1/> } />
         <Route path="/judgestep2" element={ <JudgeStep2/> } />
         <Route path="/judgestep3" element={ <JudgeStep3/> } />
+        <Route path="*" element={<div>404</div>}/>
       </Routes>
     </div>
   );
