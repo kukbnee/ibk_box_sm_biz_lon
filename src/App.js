@@ -6,6 +6,8 @@ import PreGuide from './pages/PreGuide.js';
 import JudgeStep1 from './pages/JudgeStep1.js'
 import JudgeStep2 from './pages/JudgeStep2.js'
 import JudgeStep3 from './pages/JudgeStep3.js'
+import CsInfoAgree from './pages/CsInfoAgree.js'
+import CsInfoAgree2 from './pages/CsInfoAgree2.js';
 
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
@@ -14,40 +16,48 @@ function App() {
 
   return (
     <div className="App">
-      <Link onClick={()=>{
+      <Link onClick={() => {
 
       }} to="/">홈</Link> ▷	▶
-      <Link onClick={()=>{
+      <Link onClick={() => {
 
       }} to="/cstinfoadd">고객정보등록</Link> ▷	▶
-      <Link onClick={()=>{
+      <Link onClick={() => {
 
       }} to="/prodguide">상품안내</Link> ▷	▶
-      
-      <Link onClick={()=>{
+
+      <Link onClick={() => {
 
       }} to="/preguide">사전안내</Link> ▷	▶
-      <Link onClick={()=>{
+      <Link onClick={() => {
 
       }} to="/judgestep1">심사준비 1단계</Link> ▷	▶
-      <Link onClick={()=>{
+      <Link onClick={() => {
 
       }} to="/judgestep2">심사준비 2단계</Link> ▷	▶
-      <Link onClick={()=>{
+      <Link onClick={() => {
 
       }} to="/judgestep3">심사준비 3단계</Link> ▷	▶
-      
-      <Link onClick={()=>{
+      <Link onClick={() => {
+
+      }} to="/csinfoagree">고객정보 위임 동의</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/csinfoagree2">고객정보 위임 동의2</Link> ▷ ▶
+
+      <Link onClick={() => {
 
       }} to="/"></Link>
       <Routes>
-        <Route path="/cstinfoadd" element={ <CstInfoAdd/> } />
-        <Route path="/prodguide" element={ <ProdGuide/> } />
-        <Route path="/preguide" element={ <PreGuide/> } />
-        <Route path="/judgestep1" element={ <JudgeStep1/> } />
-        <Route path="/judgestep2" element={ <JudgeStep2/> } />
-        <Route path="/judgestep3" element={ <JudgeStep3/> } />
-        <Route path="*" element={<div>404</div>}/>
+        <Route path="/cstinfoadd" element={<CstInfoAdd />} />
+        <Route path="/prodguide" element={<ProdGuide />} />
+        <Route path="/preguide" element={<PreGuide />} />
+        <Route path="/judgestep1" element={<JudgeStep1 />} />
+        <Route path="/judgestep2" element={<JudgeStep2 />} />
+        <Route path="/judgestep3" element={<JudgeStep3 />} />
+        <Route path="/csinfoagree" element={<CsInfoAgree />} />
+        <Route path="/csinfoagree2" element={<CsInfoAgree2 />} />
+        <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>
   );
