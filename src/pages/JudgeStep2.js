@@ -9,9 +9,6 @@ import { ButtonGroup, ToggleButton, Table, Button } from 'react-bootstrap';
 function JudgeStep2() {
 
     let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99, 99]);
-    useEffect(() => {
-        console.log(answer);
-    }, [answer]);
 
     const jsonItemList = data;
     const [radio, setRadio] = useState(["y", "n"]);
