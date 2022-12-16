@@ -1,12 +1,14 @@
+import PreGuideCss from '../css/PreGuide.css';
+import Table from 'react-bootstrap/Table';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-
-
+import { Button } from 'react-bootstrap';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 
 function PreGuide() {
     const [checkedButtons, setCheckedButtons] = useState([]);
-    const [disabled, setDisabled] = useState(false);
+    const [disabled, setDisabled] = useState(true);
 
     const changeHandler = (checked, id) => {
         if (checked) {
@@ -24,11 +26,13 @@ function PreGuide() {
     
     
     return (
-        <table className='Preguide'>
-            <h2></h2>
+        <Table className='PreGuideCss'>
+            <thead>
+                <h2 className='PreGuideh2'>대출신청 전 사전안내</h2>
+                
+            </thead>
             <tbody>
-            <tr>대출신청을 진행하기 전 목적(단계)별 사전 준비사항을 확인하시고 미리 준비하시기 바랍니다.</tr>
-                <tr>
+            <tr>
                     <th>목적(단계)</th>
                     <th>준비 사항</th>
                 </tr>
@@ -63,10 +67,12 @@ function PreGuide() {
                 </tr>
 
             </tbody>
-            <Button disabled = {disabled}>확인</Button>
+            <Link onClick={() => {
 
-        </table>
-        
+}} to="/judgestep1"><Button variant='primary' className='PreGuidebutton' disabled= {disabled}>확인</Button></Link>
+      
+
+        </Table>
     );
 }
 

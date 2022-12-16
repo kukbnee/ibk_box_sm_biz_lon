@@ -1,40 +1,39 @@
+import CstInfoAddcss from '../css/CstInfoAdd.css';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../json/cstinfoAddData';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function CstInfoAdd() {
 
-    let jsonDetail = [];
-    jsonDetail = data;
+  let jsonDetail = [];
+  jsonDetail = data;
 
-    return (
-      <Table className='CsInfoAdd'>
-        
-            <h2 className='csinfoadd'>고객정보 등록</h2>
-  
+  return (
+    <>
+      <Table className='CstInfoAddcss'>
+
+        <h2 className='CstInfoAddcssh2'>고객 정보 등록</h2>
+
         <tbody>
-        {
-            jsonDetail.map(function(data, idx) {
-                return (
-                    <tr>
-                        <td>{data.name}</td>
-                        <td>{data.content}</td>
-                    </tr>
-                )
+          {
+            jsonDetail.map(function (data, idx) {
+              return (
+                <tr>
+                  <td>{data.name}</td>
+                  <td>{data.content}</td>
+                </tr>
+              )
             })
-        }
-        <tr>
-            <td>
-            <Link onClick={() => {
-                    }} to="/prodguide">
-              <Button variant="primary" className='csinfobutton'>다음</Button>
-              </Link>
-            </td>
-          </tr>
+          }
         </tbody>
+        <Link onClick={() => {
+
+        }} to="/prodguide"><Button variant='primary' className='CstInfoAddbutton'>확인</Button></Link>
       </Table>
-    );
+    </>
+  );
 }
 
 export default CstInfoAdd;

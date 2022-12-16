@@ -1,132 +1,123 @@
-import JudgeStepCss from '../css/JudgeStep2.css';
-import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
+import '../css/JudgeStep2.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import data from '../json/judgeStep2Data.js';
-import Button from 'react-bootstrap/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeAnswer } from '../common/store.js';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
+
+
+import { ButtonGroup, ToggleButton, Table, Button } from 'react-bootstrap';
 
 function JudgeStep2() {
 
-    let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99]);
-    useEffect(() => {
-        console.log(answer);
-    }, [answer]);
+    let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99, 99]);
 
-    let dispatch = useDispatch();
-    let arrAnswer = useSelector((state) => state.answerStep1);
-    console.log(arrAnswer);
 
-    let jsonItemList = [];
-    jsonItemList = data;
+    const jsonItemList = data;
+    const [radio, setRadio] = useState(["y", "n"]);
+
+    const [isAllChecked, setIsAllChecked] = useState([]);
+    
     const [checkedButtons, setCheckedButtons] = useState([]);
     const [disabled, setDisabled] = useState(true);
 
     const changeHandler = (checked, id) => {
         if (checked) {
-            setDisabled(isAllChecked)
+            setDisabled(isChecked)
             setCheckedButtons([...checkedButtons, id]);
-            console.log('체크 반영 완료');
-        } else {
-            setDisabled(isAllChecked)
-            setCheckedButtons(checkedButtons.filter(button => button !== id));
-            console.log('체크 해제 반영 완료');
-
+            
+        }
+         else {
+            setDisabled(isChecked)
+            setCheckedButtons(checkedButtons.filter(Button => Button !== id));
+            
         }
     };
-    const isAllChecked = checkedButtons.length === 1;
-
-    const [isCheck, setIsCheck] = useState(false)
-    console.log(isAllChecked.length)
+    const isChecked = checkedButtons.length === 1;
 
     return (
         <>
-            <h2 id="judge2H2">
-                심사준비 2단계
-            </h2>
             <Table className="TotalSection2">
-                <tbody>
+                <thead>
+                    <tr>
+                        <td>
+                            <h2>자가진단 체크리스트</h2>
+                        </td>
+
+                    </tr>
+                    <tr align="left">
+                        <td style={{ backgroundColor: "LightCyan" }}>
+                            보증심사 진행 가능여부를 사전에 확인해주시기 바랍니다.
+                        </td>
+                    </tr>
+                </thead>
+                <tbody >
                     {
-                        jsonItemList.map(function (data, idx) {
+                        jsonItemList.map((data1, idx1) => {
                             return (
-                                <tr>
-                                    <td align='left' colSpan={2}>
-                                        {data.id}. {data.title} <br />
-                                        {data.standardVal}<br />
-                                        <ItemForm data={data} answer={answer} setAnswer={setAnswer}
-                                            onChange={e => {
-                                                changeHandler(e.currentTarget.checked, 'check')
-                                            }}
-                                            checked={checkedButtons.includes('check') ? true : false} />
+                                <tr key={idx1}>
+                                    <td key={idx1}>
+                                        {idx1 + 1}. {data1.title}
+                                        <br />
+
+                                        <ButtonGroup key={idx1}>
+                                            {
+                                                radio.map((data2, idx2) => {
+                                                    return (
+                                                        <ToggleButton
+                                                            key={`${idx1}${idx2}`}
+                                                            id={`radio${idx1}-${idx2}`}
+                                                            type="radio"
+                                                            variant={idx2 % 2 ? 'outline-danger' : 'outline-primary'}
+                                                            name={`${idx1}${idx2}`}
+                                                            value={data2}
+                                                            checked={answer[idx1] === data2}
+                                                            onChange={(e) => {
+                                                                let copy = [...answer];
+                                                                copy[idx1] = e.currentTarget.value;
+                                                                setAnswer(copy);
+                                                                console.log(copy);
+                                                            }}>
+                                                            {data2 === 'y' ? "예" : "아니오"}
+                                                        </ToggleButton>
+                                                    );
+                                                })
+
+                                            }
+                                        </ButtonGroup>
                                     </td>
                                 </tr>
                             )
                         })
                     }
-                    <td>
-                        {data.title}
-                    </td>
-                    <Form.Check onChange={e => {
-                        changeHandler(e.currentTarget.checked, 'check');
-                    }}
-                        checked={checkedButtons.includes('check') ? true : false}
-                        type="checkbox"
-                        name="checkbox"
-                        label="위 내용을 확인하였습니다." />
-                        {/**Todo: Link to 걸면 버튼 하얀색으로 변함;;;;;;;;;;;;;;;;;;;;;;*/}
-                    <Link onClick={() => {
-                    }} to="/judgestep3">
-                        <Button variant='primary' disabled={disabled}>확인</Button></Link>
+                    <br />
+                    <tr>
+                        <td style={{ backgroundColor: "lightgray" }}>고객님께서 입력하신 내용은 심사 시 사실여부를 다시 한번 확인하게 됩니다. 신청대상이 아님에도 불구하고 실제와 다르게 입력하였을 경우 보증서 발급이 거절될 수 있습니다.</td>
+                    </tr>
+
                 </tbody>
             </Table>
+            <div>위 내용에 동의하십니까?</div>
+            <br/>
+            <div><input type="checkbox" onChange={e => {
+                    changeHandler(e.currentTarget.checked, 'check');
+                    if(answer.includes(99) == true) {
+                        alert("체크리스트 항목을 확인 바랍니다.")
+                        changeHandler(e.currentTarget.checked,)
+                    }
+                    
+
+                }}
+                    checked={checkedButtons.includes('check') ? true : false}></input></div>
+            <div>동의합니다.</div>
+            <div><Button
+                variant='primary'
+                id='button'
+                disabled= {disabled}>
+                    확인</Button></div>
+            
 
 
         </>
     );
 }
-
-
-function ItemForm(props) {
-    let dispatch = useDispatch();
-    if (props.data.type == "select") {
-        return (
-            <>
-                <Form>
-                    <div key="default-radio" className="mb-3">
-                        {
-                            props.data.buttonList.map(function (data) {
-                                return (
-                                    <Form.Check
-                                        type="radio"
-                                        name="radio-group"
-                                        id={data.id}
-                                        label={data.value}
-                                        onClick={(e) => {
-                                            if ("on" == e.target.value) {
-                                                let obj = {
-                                                    idx: props.data.id,
-                                                    id: data.id,
-                                                    value: data.value
-
-                                                }
-                                                let copy = [...props.answer];
-                                                copy[obj.idx] = obj;
-                                                props.setAnswer(copy);
-                                            }
-
-                                        }}>
-                                    </Form.Check>
-                                );
-                            })
-                        }
-                    </div>
-                </Form>
-            </>
-        );
-    }
-}
-
 
 export default JudgeStep2;

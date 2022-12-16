@@ -1,45 +1,42 @@
+import ProdGuideCss from '../css/ProdGuide.css';
+import Table from 'react-bootstrap/Table';
 import data from '../json/prodGuideData.js';
-import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function ProdGuide() {
 
-  let jsonDetail = [];
-  jsonDetail = data;
+    let jsonDetail = [];
+    jsonDetail = data;
 
-  return (
-    <table className='Prodguide'>
-      <tr className='h2prodguidwrapp'>
-        <h2 className='h2prodguide'>상품안내</h2>
-      </tr>
-      <tbody>
-        <tr className='prodtr'>
-          <th className='prodth'>구분</th>
-          <th className='prodth'>상세내용</th>
-        </tr>
-
-        {
-          jsonDetail.map(function (data, idx) {
-            return (
-              <tr className='prodtr'>
-                <td className='prodtd'>{data.name}</td>
-                <td className='prodtd'>{data.content}</td>
-              </tr>
-            )
-          })
-        }
+    return (
+      <Table className='ProdGuideCss'>
+        <thead>
+        <h2 className='ProdGuideh2'>상품 안내</h2>
+          
+        </thead>
+        <tbody>
         <tr>
-          <td>
-            <Link onClick={() => {
+            <th>구분</th>
+            <th>상세내용</th>
+          </tr>
+        {
+            jsonDetail.map(function(data, idx) {
+                return (
+                    <tr>
+                        <td>{data.name}</td>
+                        <td>{data.content}</td>
+                    </tr>
+                )
+            })
+        }    
+        </tbody>
+        <Link onClick={() => {
 
-            }} to="/preguide">
-              <Button variant="primary" className='prodguidebutton'>다음</Button>
-            </Link>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  );
+}} to="/preguide"><Button variant='primary' className='ProGuidebutton'>확인</Button></Link>
+      </Table>
+    );
 }
 
 export default ProdGuide;
