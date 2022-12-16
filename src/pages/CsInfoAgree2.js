@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Footer from './Footer.js';
 
+/* 수정 */
 
 
 function CsInfoAgree2() {
