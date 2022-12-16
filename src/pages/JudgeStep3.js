@@ -32,7 +32,7 @@ function JudgeStep3() {
 
   return (
     <>
-    <Header stepCd={1}/>
+    <Header pageId={4} stepCd={1}/>
     <Table className="TotalSection">
         <h2>정보제공동의 [필수] </h2>
           <b>대출 약정신청을 위해 아래 내용을 충분히 이해하신 후 동의하시기 바랍니다.</b>
@@ -57,11 +57,7 @@ function JudgeStep3() {
                     </Button>
                   
                 <Button className="me-2 mb-2" onClick={()=> {setVisible(!visible);}}>{visible ? "동의완료" : "동의"}</Button>
-
                 </td>
-
-                {/**내용보기 Modal로 pdf파일 뷰어 출력 데이터??where*/}
-
               </tr>
               
 
