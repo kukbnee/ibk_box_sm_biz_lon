@@ -23,7 +23,8 @@ function Footer(props) {
    */
   const objVerif = {
     type: "",                 //ex)"button"
-    text: [],                 //ex)[확인,취소]
+    disabled: true,           //ex)디폴드 disabled는 true
+    text: [],                 //ex)[취소,확인]
     link: "",                 //ex)"/judgeStep3.js"
     callbackId: function(){}  //각 컴포넌트에 버튼클릭에 대한 콜백함수명 (각 컴포넌트에서 정의한 콜백함수)
   }
@@ -56,11 +57,11 @@ function Footer(props) {
   switch(type) {
     case "button" : 
       return (
-        <Navbar fixed="bottom" style={margin}>
+        <Navbar style={margin}>
           {
             obj.text.map((data, idx)=>{
               return (
-              <Button key={idx} variant={idx===0?"primary":"secondary"} size="lg" style={{width: '100%'}} onClick={()=>{setCallback(obj.callbackId, navigate, link)}}>
+              <Button key={idx} variant={idx===0?"secondary":"primary"} size="lg" style={{width: '100%'}} onClick={()=>{setCallback(obj.callbackId, idx, navigate, link)}} disabled={obj.disabled}>
                 {data}
               </Button>
               )  
@@ -72,10 +73,10 @@ function Footer(props) {
   }
 }
 
-function setCallback(callbackId, arg1, arg2) {
+function setCallback(callbackId, arg0, arg1, arg2) {
 
   if(typeof callbackId == 'function') {
-    callbackId.call(callbackId, arg1, arg2);
+    callbackId.call(callbackId, arg0, arg1, arg2);
   }else {
     console.log("콜백함수가 없습니다.");
     return;

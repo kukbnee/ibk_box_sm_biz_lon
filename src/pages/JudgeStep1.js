@@ -13,6 +13,8 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAnswer } from '../common/store.js';
+import Footer from './Footer';
+import AlertModal from './AlertModal';
 
 
 // let [answer, setAnswer] = useState([99,99,99,99,99,99,99,99,99,99,99,99]);
@@ -20,20 +22,54 @@ import { changeAnswer } from '../common/store.js';
 function JudgeStep1Data() {
     let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99]);
     useEffect(() => {
-
-        console.log(answer);
+      console.log(answer);  
+      
+      // const tick = setTimeout(() => {
+    
+      // }, 200);
+      
     }, [answer]);
 
     let jsonItemList = judgeData;
 
-    let dispatch = useDispatch();
-    let arrAnswer = useSelector((state) => state.answerStep1);
-    console.log(arrAnswer);
+    // let dispatch = useDispatch();
+    // let arrAnswer = useSelector((state) => state.answerStep1);
+    // console.log(arrAnswer);
+    let [disabledYn, setDisabledYn] = useState(false);
 
-
-
+    const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, callback: false});
+    const onSubmit = (e) => {
+      if(false) {
+          setPopup({
+              open: true,
+              title: "Error",
+              message: "Please make sure all fields are filled in correctly."
+          });
+          return;
+      }
+    }
+    function cbFooter(idx, navigate, link) {
+      
+      
+      if(idx === 0) {
+        alert(11);
+      }else {
+        answer.map((data, idx)=>{
+          
+          let msg = validCheckItem(data, idx);
+          console.log(msg);
+          if(msg != null) {
+            setPopup({
+              open: true,
+              title: "Error",
+              message: msg,
+              isHeader: false
+          });
+          }
+        })
+      }
+    }
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -49,10 +85,10 @@ function JudgeStep1Data() {
                     {
                         jsonItemList.map(function (data, idx) {
                             return (
-                                <tr>
-                                    <td align='left' colSpan={2}>
+                                <tr key={`tr${idx}`}>
+                                    <td key={`td${idx}`} align='left' colSpan={2}>
                                         <b>{data.id + 1}. {data.title}</b> <br />
-                                        <ItemForm data={data} answer={answer} setAnswer={setAnswer} />
+                                        <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx}/>
                                     </td>
                                 </tr>
                             )
@@ -75,9 +111,6 @@ function JudgeStep1Data() {
                         </td>
                         </tr>
                         <tr>
-                        <td>
-                            <Button variant="primary" style={{width: 480, marginLeft: 10}} onClick={() => { validCheck(arrAnswer) }}>다음</Button>
-                        </td>
                     </tr>
                     </Accordion.Body>
                     </Accordion.Item>
@@ -85,16 +118,51 @@ function JudgeStep1Data() {
                 </tbody>
                 
             </Table>
+            <Footer obj={{
+              type: "button",  
+              disabled: disabledYn,
+              text: ["취소","확인"],  
+              link: "",  
+              callbackId: cbFooter
+            }} ></Footer>
             <NotiModal show={show} handleClose={handleClose} handleShow={handleShow}></NotiModal>
+            <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} callback={popup.callback}/>
         </>
     );
 }
 
 function ItemForm(props) {
-    let dispatch = useDispatch();
+
     let [selCrdBru, setSelCrdBru] = useState("평가기관 선택");
+    let [email, setEmail] = useState(["",""]);
     let [selEmail, setSelEmail] = useState("직접입력");
+    let [dirEmail, setDirEmail] = useState(["",""]);
     let [stlEmailTxt, setStlEmailTxt] = useState("block");
+    let [obj1, setObj1] = useState({});
+    let [obj9, setObj9] = useState({});
+
+    const [age, setAge] = useState(0);
+    const handleChange = ({ target: { value } }) => setAge(value);
+
+    useEffect(()=> {
+      let copy = [...props.answer];
+      copy[props.index] = email[0] + "@" + email[1];
+      props.setAnswer(copy);
+    },[email]);
+
+    useEffect(()=>{
+        let copy = [...email];
+        copy[1] = selEmail;
+        setEmail(copy);
+    },[selEmail]);
+
+    useEffect(()=> {
+      return ()=> {
+        let copy = [...props.answer];
+        copy[props.data.id] = obj9;
+        props.setAnswer(copy);
+      }
+    },[obj9]);
 
     const Style = {
         backgroundColor: 'white',
@@ -106,9 +174,10 @@ function ItemForm(props) {
 
                 <div key="default-radio" className="mb-3">
                     {
-                        props.data.radioList.map(function (data) {
+                        props.data.radioList.map(function (data,idx) {
                             return (
                                 <Form.Check
+                                    key={`${idx}${props.idx}`}
                                     type="radio"
                                     name="radio-group"
                                     id={data.id}
@@ -146,6 +215,11 @@ function ItemForm(props) {
                         <Form.Control
                             aria-label="Small"
                             aria-describedby="inputGroup-sizing-sm"
+                            onChange={(e)=>{
+                              let copy = [...props.answer];
+                              copy[props.index] = e.target.value;
+                              props.setAnswer(copy);
+                            }}
                         />
                         <InputGroup.Text style={Style}>세</InputGroup.Text>
                     </InputGroup>
@@ -153,19 +227,18 @@ function ItemForm(props) {
                 </>
             );
         } else if (props.data.id == 9) {
+            
 
             return (
                 <>
                     <InputGroup>
-                        <InputGroup.Radio  aria-label="Radio button for following text input" name="creditScore"
+                        <InputGroup.Radio  key={"radio9-0"} aria-label="Radio button for following text input" name="creditScore"
                             onClick={(e) => {
                                 if ("on" == e.target.value) {
-                                    let obj = {
-                                        idx: props.data.id,
-                                        id: judgeData.id,
-                                        value: judgeData.value
-                                    }
-                                    dispatch(changeAnswer(obj));
+                                  
+                                  let copyObj = {...obj9};
+                                  copyObj.id = 0;
+                                  setObj9(copyObj);
                                 }
 
                             }} />
@@ -185,11 +258,26 @@ function ItemForm(props) {
                                 })
                             }
                         </DropdownButton>
-                        <Form.Control aria-label="Text input with radio button" />
+                        <Form.Control aria-label="Text input with radio button"
+                          onChange={(e)=>{
+                            let copyObj = {...obj9};
+                            copyObj.value = e.target.value;
+                            setObj9(copyObj);
+                          }}/>
                         <InputGroup.Text style={Style} id="inputGroup-sizing-sm">점(1~1000점)</InputGroup.Text>
                     </InputGroup>
                     <InputGroup>
-                        <InputGroup.Radio aria-label="Radio button for following text input" name="creditScore" />
+                        <InputGroup.Radio key={"radio9-1"} aria-label="Radio button for following text input" name="creditScore"
+                          onClick={(e) => {
+                            if ("on" == e.target.value) {
+                              
+                              let copyObj = {...obj9};
+                                  copyObj.id = 1;
+                                  copyObj.value = "잘모름"
+                                  setObj9(copyObj);
+                              }
+
+                          }} />
                         <InputGroup.Text style={Style} id="inputGroup-sizing-sm">잘 모름</InputGroup.Text>
                     </InputGroup>
                 </>
@@ -198,28 +286,45 @@ function ItemForm(props) {
             return (
                 <>
                     <InputGroup>
-                        <Form.Control aria-label="Text input with radio button" />
+                        <Form.Control aria-label="Text input with radio button"
+                          onChange={(e)=>{
+                            let copy = [...email];
+                            copy[0] = e.target.value;
+                            setEmail(copy);
+                        }}/>
                         <InputGroup.Text style={Style} id="inputGroup-sizing-sm">@</InputGroup.Text>
-                        <Form.Control aria-label="Text input with radio button" style={{ "display": stlEmailTxt }} />
+                        <Form.Control aria-label="Text input with radio button" style={{ "display": stlEmailTxt }} 
+                          onChange={(e)=>{
+                            if(stlEmailTxt === 'block') {
+                              let copy = [...email];
+                              copy[1] = e.target.value;
+                              setEmail(copy);
+                            }
+                        }} />
                         <DropdownButton
                             variant="outline-secondary"
                             title={selEmail}
                             id="input-group-dropdown-1"
                         >
                             {
-                                cmmData("email").map(function (data, idx) {
-                                    return (
-                                        <Dropdown.Item onClick={() => {
-                                            setSelEmail(data.title);
-                                            if (data.name == "") {
-                                                setStlEmailTxt("block");
-                                            } else {
-                                                setStlEmailTxt("none");
-                                            }
+                              cmmData("email").map(function (data, idx) {
+                                  return (
+                                      <Dropdown.Item onClick={(e) => {
+                                          
+                                          if (data.id === 1) {
+                                            setStlEmailTxt("block");
+                                          } else {
+                                            setStlEmailTxt("none");
+                                            
+                                            let copyEmail = [...email];
+                                            copyEmail[1] = data.title;
+                                            setEmail(copyEmail);
+                                          }
+                                          setSelEmail(data.title);
 
-                                        }}>{data.title}</Dropdown.Item>
-                                    );
-                                })
+                                      }}>{data.title}</Dropdown.Item>
+                                  );
+                              })
                             }
                         </DropdownButton>
                     </InputGroup>
@@ -260,7 +365,34 @@ function NotiModal(props) {
     );
 }
 
-function validCheck(props) {
+function validCheckItem(answer, idx) {
+  
+  switch(idx) {
+    case 0 :
+      if(answer.id === 1) {
+        console.log(judgeData[0].msg);
+        return judgeData[0].msg;
+        
+      }
+    // case 1 :
+    // case 2 :
+    // case 3 :
+    // case 4 :
+    // case 5 :
+    // case 6 :
+    // case 7 :
+    // case 8 :
+    // case 9 :
+    // case 10 :
+    // case 11 :
+    default :
+      return null;
+
+  }
+
+}
+
+function validCheckEmpty(props) {
     let title = "";
     let index = 0;
     let verb = "하시기 바랍니다.";
@@ -303,6 +435,10 @@ function checkBatchimEnding(word) {
     if (uni < 44032 || uni > 55203) return null;
 
     return (uni - 44032) % 28 != 0;
+}
+
+function test(arg1) {
+  alert(arg1);
 }
 
 export default JudgeStep1Data;
