@@ -26,7 +26,13 @@ function ProdGuide() {
                 return (
                     <tr>
                         <td>{data.name}</td>
-                        <td>{data.content}</td>
+                        <td align='left'>
+                        {
+                            data.content.split('\n').map( line => {
+                                return (<span>{line}<br/></span>)
+                            })
+                        }
+                        </td>
                     </tr>
                 )
             })
