@@ -12,7 +12,7 @@ import DocCollectList from './pages/DocCollectList';
 import JudgeResult from './pages/JudgeResult';
 import JudgeDocResult from './pages/JudgeDocResult';
 import ProCheck from './pages/ProCheck';
-import PreJudge from './pages/PreJudge';
+import PreJudge from './pages/PreJudgeInfoAdd';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 
@@ -62,7 +62,7 @@ function App() {
       }} to="/procheck">대출 진행상태 조회</Link> ▷ ▶
       <Link onClick={() => {
 
-}} to="/prejudge">사전심사 정보입력</Link> ▷ ▶
+}} to="/PreJudgeInfoAdd">사전심사 정보입력</Link> ▷ ▶
 
 
       <Link onClick={() => {
@@ -81,7 +81,7 @@ function App() {
         <Route path="/judgeresult" element={<JudgeResult />} />
         <Route path="/judgedocresult" element={<JudgeDocResult />} />
         <Route path="/procheck" element={<ProCheck />} />
-        <Route path="/prejudge" element={<PreJudge />} />
+        <Route path="/PreJudgeInfoAdd" element={<PreJudge />} />
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>
