@@ -1,6 +1,13 @@
-.Preguide {
+.PreGuideCss{
     width: 50%;
-    margin-left: 25%;
-    border: 1px solid #444444;
+    margin-left: 23%;
+    margin-top: 2%;
+}
+.PreGuideh2{
     margin-top: 5%;
+    white-space:nowrap;
+    margin-left: 75%;
+}
+.PreGuidebutton {
+    width: 244%;
 }
