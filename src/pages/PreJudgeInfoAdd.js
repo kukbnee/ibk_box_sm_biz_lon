@@ -104,10 +104,13 @@ function PreJudgeInfoAdd() {
                         <td>
                             <form class="was-validated">
                                 <div class="mb-3">
-                                    <select class="form-select" required aria-label="select example">
+                                    <select class="form-select" required aria-label="select example"
+                                    onChange={(e) => {
+                                        console.log(e.currentTarget.value)
+                                    }}>
                                         <option value=""></option>
-                                        <option value="1">창업</option>
-                                        <option value="2">인수</option>
+                                        <option value="창업">창업</option>
+                                        <option value="인수">인수</option>
                                     </select>
                                     <div class="invalid-feedback">선택해주세요.</div>
                                 </div>
@@ -310,19 +313,20 @@ function PreJudgeInfoAdd() {
                                     placeholder="고객입력필드"
                                     type="number"
                                     onKeyUp={setMoney}
-                                />원
+                                />
                             </InputGroup>
                         </td>
+                        <td>원</td>
                     </tr>
                     <tr align='left'>
                         <td>{obj[26].title}</td>
-                        <td id="result">원</td>
+                        <td id="result"></td><td>원</td>
                     </tr>
                 <tr align='left'><h5>6. 대출은행 선택 (필수)</h5></tr>
 
                     <tr align='left'>
                         <td>{obj[27].title}</td>
-                        <td>{obj[27].standardVal}</td>
+                        <td>IBK 기업은행</td>
                     </tr>
                     <tr align='left'>
                         <td>{obj[28].title}</td>
