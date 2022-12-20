@@ -37,16 +37,14 @@ function JudgeStep1Data() {
     // console.log(arrAnswer);
     let [disabledYn, setDisabledYn] = useState(false);
 
-    const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, callback: false});
-    const onSubmit = (e) => {
-      if(false) {
-          setPopup({
-              open: true,
-              title: "Error",
-              message: "Please make sure all fields are filled in correctly."
-          });
-          return;
-      }
+    const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], callback: ()=>{}});
+
+    function cbAlertModal(props) {
+        if(props === 0) { //아니오
+
+        }else { //예
+            alert(1)
+        }
     }
     function cbFooter(idx, navigate, link) {
       
@@ -63,7 +61,9 @@ function JudgeStep1Data() {
               open: true,
               title: "Error",
               message: msg,
-              isHeader: false
+              isHeader: false,
+              confirmBtn: ["아니오", "예"],
+              callback: cbAlertModal
           });
           }
         })
@@ -126,7 +126,7 @@ function JudgeStep1Data() {
               callbackId: cbFooter
             }} ></Footer>
             <NotiModal show={show} handleClose={handleClose} handleShow={handleShow}></NotiModal>
-            <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} callback={popup.callback}/>
+            <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} confirmBtn={popup.confirmBtn} callback={popup.callback}/>
         </>
     );
 }
@@ -373,9 +373,16 @@ function validCheckItem(answer, idx) {
         console.log(judgeData[0].msg);
         return judgeData[0].msg;
         
+      }else {        
+        return validCheckEmpty(answer, idx);
       }
     // case 1 :
-    // case 2 :
+    case 2 :
+      if(answer.id === 1) {
+        return judgeData[0].msg;
+      }else {
+        return validCheckEmpty(answer, idx);
+      }
     // case 3 :
     // case 4 :
     // case 5 :
@@ -384,7 +391,13 @@ function validCheckItem(answer, idx) {
     // case 8 :
     // case 9 :
     // case 10 :
-    // case 11 :
+    case 11 :
+      let email = answer.split("@");
+      email.map((data, idx)=>{
+        if(!!data) {
+          
+        }
+      });
     default :
       return null;
 
@@ -392,33 +405,35 @@ function validCheckItem(answer, idx) {
 
 }
 
-function validCheckEmpty(props) {
+function validCheckEmpty(answer, idx) {
     let title = "";
     let index = 0;
     let verb = "하시기 바랍니다.";
     let msg = "";
 
-    for (let idx = 0; idx < props.length; idx++) {
-        if (props[idx] == "99") {
-            title = judgeData[idx].title;
-            index = idx;
-            let josa = "";
-            if (checkBatchimEnding(title)) {
-                josa = "을 ";
-            } else {
-                josa = "를 ";
-            }
-            if (index == 1 || index == 9 || index == 11) {
-                verb = "입력" + verb;
-            } else {
-                verb = "선택" + verb;
-            }
-
-            msg = title + josa + verb;
-            break;
+    
+    if (answer == "99") {
+        
+        title = judgeData[idx].title;
+        alert(judgeData[idx]);
+        let josa = "";
+        if (checkBatchimEnding(title)) {
+            josa = "을 ";
+        } else {
+            josa = "를 ";
         }
+        if (idx == 1 || idx == 9 || idx == 11) {
+            verb = "입력" + verb;
+        } else {
+            verb = "선택" + verb;
+        }
+
+        msg = title + josa + verb;
+        return msg;
+    }else {
+        return null;
     }
-    alert(msg);
+    
 }
 
 /**

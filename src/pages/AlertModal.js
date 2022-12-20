@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-function AlertModal({open, setPopup, message, title, isHeader, callback}) {
-  console.log("asdf"+isHeader);
-  const handleClose = () => {
+function AlertModal({open, setPopup, message, title, isHeader, confirmBtn, callback}) {
+  
+  const handleClose = (props) => {
     
-    setPopup({open: false});
-    // if(callback){
-    //   callback();
-    // }
+    setPopup({open: false, message: "", callback: callback});
+    
+    if(typeof callback === "function"){
+      callback(props);
+    }
   }
 
   return (
@@ -30,9 +30,9 @@ function AlertModal({open, setPopup, message, title, isHeader, callback}) {
         </Modal.Body>
         <Modal.Footer>
         {
-          ["아니오", "예"].map((data, idx)=>{
+          confirmBtn.map((data, idx)=>{
             return (
-              <Button variant={idx===0?"secondary":"primary"} onClick={handleClose}>{data}</Button>  
+              <Button variant={idx===0?"secondary":"primary"} onClick={()=>{handleClose(idx)}}>{data}</Button>  
             )
           })
         }
