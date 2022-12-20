@@ -16,8 +16,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
  */
 function Header(props) {
 
-  const arrStepNm = cmmData("stepNm");
   const pageList = cmmData("page");
+  let arrStepNm = [];
+  
+  if(props.pageId === 4) {
+    arrStepNm = cmmData("judgeStepNm");
+  }else if(props.pageId === 6) {
+    arrStepNm = cmmData("loanStepNm");
+  }  
 
   let [pageShow, setPageShow] = useState(false);
   let [stepShow, setStepShow] = useState(false);

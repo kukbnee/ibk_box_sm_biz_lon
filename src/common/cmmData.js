@@ -35,7 +35,8 @@ https://www.ibk.co.kr/fup/customer/form/2022053115201429260014431270238.pdf
 개업일 1년 미만은 신청 불가합니다.
 최근 1년 이내 대표자(실제경영자)가 변경된 경우 신청이 불가합니다.
 */
-const arrStepNm = ["정보제공동의", "본인인증", "서류수집", "서류전송현황", "정보입력", "사전심사신청"];
+const arrJudgeStepNm = ["정보제공동의", "본인인증", "서류수집", "서류전송현황", "정보입력", "사전심사신청"];
+const arrLoanStepNm = [""];
 const pageList = [
     {
       id: 1,
@@ -192,10 +193,11 @@ let validlist2 = [];
 */
 function cmmData(props) {
     switch(props) {
-        case 'crdBru' : return crdBruList;
-        case 'email'  : return emailList;
-        case 'stepNm' : return arrStepNm;
-        case 'page'   : return pageList;
+        case 'crdBru'       : return crdBruList;
+        case 'email'        : return emailList;
+        case 'judgeStepNm'  : return arrJudgeStepNm;
+        case 'loanStepNm'   : return arrLoanStepNm
+        case 'page'         : return pageList;
         //case 'valid1' : return validList1;
         //case 'valid2' : return validlist2;
     }
