@@ -8,11 +8,18 @@ import JudgeStep2 from './pages/JudgeStep2.js'
 import JudgeStep3 from './pages/JudgeStep3.js'
 import CsInfoAgree from './pages/CsInfoAgree.js'
 import CsInfoAgree2 from './pages/CsInfoAgree2.js';
-import DocCollectList from './pages/DocCollectList';
-import JudgeResult from './pages/JudgeResult';
-import JudgeDocResult from './pages/JudgeDocResult';
-import ProCheck from './pages/ProCheck';
-import PreJudge from './pages/PreJudgeInfoAdd';
+import DocCollectList from './pages/DocCollectList.js';
+import JudgeResult from './pages/JudgeResult.js';
+import JudgeDocResult from './pages/JudgeDocResult.js';
+import ProCheck from './pages/ProCheck.js';
+import PreJudge from './pages/PreJudgeInfoAdd.js';
+import PreJudgeResult from './pages/PreJudgeResult.js';
+import LoanCheck1 from './pages/LoanCheck1.js';
+import LoanCheck2 from './pages/LoanCheck2.js';
+import LoanCheck3 from './pages/LoanCheck3.js';
+import LoanFail1 from './pages/LoanFail1.js';
+import LoanFail2 from './pages/LoanFail2.js';
+import LoanCancle from './pages/LoanCancle.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 
@@ -62,7 +69,28 @@ function App() {
       }} to="/procheck">대출 진행상태 조회</Link> ▷ ▶
       <Link onClick={() => {
 
-}} to="/PreJudgeInfoAdd">사전심사 정보입력</Link> ▷ ▶
+      }} to="/PreJudgeInfoAdd">사전심사 정보입력</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/prejudgeresult">사전심사 신청완료</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/loancheck1">신청중인 대출 진행/조회/취소</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/loancheck2">신청중인 대출 진행/조회/취소 (보증심사중)</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/loancheck3">신청중인 대출 진행/조회/취소 (심사완료)</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/loanfail1">신청중인 대출 진행/조회/취소 (보증거절1)</Link> ▷ ▶
+      <Link onClick={() => {
+
+}} to="/loanfail2">신청중인 대출 진행/조회/취소 (검증거절2)</Link> ▷ ▶
+<Link onClick={() => {
+
+}} to="/loancancle">보증신청 취소</Link> ▷ ▶
 
 
       <Link onClick={() => {
@@ -82,6 +110,13 @@ function App() {
         <Route path="/judgedocresult" element={<JudgeDocResult />} />
         <Route path="/procheck" element={<ProCheck />} />
         <Route path="/PreJudgeInfoAdd" element={<PreJudge />} />
+        <Route path="/prejudgeresult" element={<PreJudgeResult />} />
+        <Route path="/loancheck1" element={<LoanCheck1 />} />
+        <Route path="/loancheck2" element={<LoanCheck2 />} />
+        <Route path="/loancheck3" element={<LoanCheck3 />} />
+        <Route path="/loanfail1" element={<LoanFail1 />} />
+        <Route path="/loanfail2" element={<LoanFail2 />} />
+        <Route path="/loancancle" element={<LoanCancle />} />
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>

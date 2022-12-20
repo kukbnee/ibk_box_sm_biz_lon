@@ -1,5 +1,16 @@
-.boxdiv {
-    border: solid 1px lightblue;
-    width: 100%;
-    margin-left: 10%;
+.boxdiv{
+    border: solid 1px rgb(21, 136, 189);
+    margin-left: 25%;
+    font-size: larger;
+}
+.check{
+    margin-left: 30%;
+    width: 40%;
+}
+.danger{
+    display:table;
+}
+.ggg{
+    width: 13%;
+
 }
