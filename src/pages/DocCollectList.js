@@ -1,3 +1,4 @@
+import DocCollectListCss from '../css/DocCollectList.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
@@ -6,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Footer from './Footer.js';
+
 
 
 function DocCollectList() {
@@ -18,8 +20,10 @@ function DocCollectList() {
     return (
         <>
             <Header pageId={4} stepCd={3} />
-            <Table className=''>
+            <Table className='document5'>
                 <tbody>
+                    <h3><b>서류수집내역</b></h3>
+                    <br/>
                     <tr>
                         <td>
                             부가세 신고서

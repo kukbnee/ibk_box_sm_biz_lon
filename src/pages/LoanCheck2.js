@@ -26,7 +26,7 @@ function LoanCheck2() {
                 </div>
                 <br />
                 <br />
-                <div style={{ height: 200 }}>사업장 현장 실사 및 심사 예정</div>
+                <div>사업장 현장 실사 및 심사 예정</div>
                 <br />
                 <br />
                 <tbody align='left'>
@@ -69,7 +69,7 @@ function LoanCheck2() {
             - 기타 사항은 담당 신용보증기금 영업점에 문의바랍니다.</div>
             <Link onClick={() => {
 
-            }} to="/">
+            }} to="/loancancle">
                 <Button variant='primary'>보증신청 취소</Button></Link>
         </>
 

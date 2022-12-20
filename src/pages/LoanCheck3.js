@@ -26,7 +26,7 @@ function LoanCheck3() {
                 </div>
                 <br />
                 <br />
-                <div style={{ height: 200 }}>아래 대출실행 버튼을 눌러 진행해주세요.</div>
+                <div>아래 대출실행 버튼을 눌러 진행해주세요.</div>
                 <br />
                 <br />
                 <tbody align='left'>

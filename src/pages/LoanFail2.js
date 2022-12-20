@@ -6,10 +6,7 @@ import { Button } from 'react-bootstrap';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 
-
-
-
-function LoanCheck1() {
+function LoanFail2() {
 
 
 
@@ -22,38 +19,43 @@ function LoanCheck1() {
                     <h4><b>진행 현황</b></h4>
                 </div><br />
                 <div align='left'>
-                    <div><b>사전심사접수</b><b>사전심사</b>- 보증심사 - 심사완료</div>
+                    <div><b>사전심사접수</b>사전심사 - 보증심사 - <b>심사완료</b></div>
                 </div>
                 <br />
                 <br />
-                <div>안내문자 메시지 수신 후 아래 사전심사<br />결과확인 버튼을 눌러 주시기 바랍니다.</div>
+                <div>심사조건을 충족하지 않았습니다.</div>
                 <br />
                 <br />
                 <tbody align='left'>
                     <tr >
                         <td>진행단계</td>
-                        <td>사전심사대기</td>
+                        <td>검증거절</td>
                     </tr>
                     <tr>
-                        <td>업체명</td>
-                        <td>김기은센터</td>
+                        <td>신청일자</td>
+                        <td>9999.01.01</td>
                     </tr>
                     <tr>
-                        <td>대표자</td>
-                        <td>김기은</td>
+                        <td>신청금액</td>
+                        <td>xxx.xxx.xxx원</td>
                     </tr>
+                    <tr>
+                        <td>불승인사유</td>
+                        <td>가나다라마바사</td>
+                    </tr>
+                    
 
                 </tbody>
             </Table>
             <div style={{ color: 'red' }}><b>[유의사항]</b></div>
-            <div>사전심사 결과조회는 당일. 진행 가능여부는 수일 내 결정하여 통지드릴 예정이며 <b style={{ color: 'red' }}>네이버 톡톡</b>과 휴대폰 문자메시지로 알려드립니다.</div>
+            <div>- 세부 내용은 담당 신용보증기금 고객센터(1588-6565)에 문의 바랍니다.</div>
             <Link onClick={() => {
 
-            }} to="/loancheck2">
+            }} to="/">
                 <Button variant='primary'>확인</Button></Link>
         </>
 
     )
 }
 
-export default LoanCheck1;
+export default LoanFail2;
