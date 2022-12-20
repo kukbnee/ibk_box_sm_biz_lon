@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAnswer } from '../common/store.js';
 import Footer from './Footer';
-import AlertModal from './AlertModal';
+import AlertModal from './AlertModal.js';
 
 
 // let [answer, setAnswer] = useState([99,99,99,99,99,99,99,99,99,99,99,99]);
