@@ -43,7 +43,7 @@ function JudgeStep1Data() {
         if(props === 0) { //아니오
 
         }else { //예
-            alert(1)
+            
         }
     }
     function cbFooter(idx, navigate, link) {
@@ -55,7 +55,7 @@ function JudgeStep1Data() {
         answer.map((data, idx)=>{
           
           let msg = validCheckItem(data, idx);
-          console.log(msg);
+          //console.log("!" + msg);
           if(msg != null) {
             setPopup({
               open: true,
@@ -366,7 +366,8 @@ function NotiModal(props) {
 }
 
 function validCheckItem(answer, idx) {
-  
+  console.log(answer);
+  console.log(idx);
   switch(idx) {
     case 0 :
       if(answer.id === 1) {
@@ -376,7 +377,10 @@ function validCheckItem(answer, idx) {
       }else {        
         return validCheckEmpty(answer, idx);
       }
-    // case 1 :
+    case 1 :
+      
+      return validCheckEmpty(answer, idx);
+      
     case 2 :
       if(answer.id === 1) {
         return judgeData[0].msg;
@@ -393,13 +397,10 @@ function validCheckItem(answer, idx) {
     // case 10 :
     case 11 :
       let email = answer.split("@");
-      email.map((data, idx)=>{
-        if(!!data) {
-          
-        }
-      });
-    default :
-      return null;
+      let flag = true;
+      
+      return "신청대출 실행 후 관련 계약서류를 입력하신 고객님의 이메일주소(" + answer + ")로 제공합니다.\n이메일주소가 맞는지 한번 더 확인바랍니다.";
+      
 
   }
 
@@ -412,7 +413,7 @@ function validCheckEmpty(answer, idx) {
     let msg = "";
 
     
-    if (answer == "99") {
+    if (!answer || answer === "99") {
         
         title = judgeData[idx].title;
         alert(judgeData[idx]);
