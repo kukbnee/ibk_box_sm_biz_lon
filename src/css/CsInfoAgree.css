@@ -1,0 +1,28 @@
+.document1{
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 1.8%;
+    font-size: larger;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.document2{
+    text-align: left;
+    margin-top: 3%;
+    margin-left:4%;
+}
+
+.container1{
+   vertical-align: auto;
+   line-height: 5%;
+}
+
+.agree{
+    font-size:150%;
+}
+
+#div_1{
+    text-indent:5px;
+}
+/* 수정 */
