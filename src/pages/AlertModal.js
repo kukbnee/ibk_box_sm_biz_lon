@@ -22,9 +22,10 @@ function AlertModal({open, setPopup, message, title, isHeader, confirmBtn, callb
   
   const handleClose = (props) => {
     
-    setPopup({open: false, message: "", confirmBtn: [], callback: callback});
+    setPopup({open: false, message: "", confirmBtn: [], callback: ()=>{}});
     
     if(typeof callback === "function"){
+      
       callback(props);
     }
   }

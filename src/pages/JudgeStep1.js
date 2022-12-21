@@ -10,17 +10,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import judgeData from '../json/judgeStep1Data.js';
 import cmmData from '../common/cmmData.js';
 import Accordion from 'react-bootstrap/Accordion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeAnswer } from '../common/store.js';
 import Footer from './Footer';
 import AlertModal from './AlertModal.js';
+import { useNavigate } from 'react-router-dom';
 
 
 // let [answer, setAnswer] = useState([99,99,99,99,99,99,99,99,99,99,99,99]);
-
+//"신청대출 실행 후 관련 계약서류를 입력하신 고객님의 이메일주소(" + data + ")로 제공합니다.\n이메일주소가 맞는지 한번 더 확인바랍니다.";
 function JudgeStep1Data() {
-    let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99]);
+  
+  //항목별 체크 상태
+  let [answer, setAnswer] = useState([99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99]);
+  //항목 숨김 처리를 위한 state
+  let [isHide, setIsHide] = useState([false, false, false, false, false, false, false, false, false, false, false, false]);
     useEffect(() => {
       console.log(answer);  
       
@@ -37,18 +42,40 @@ function JudgeStep1Data() {
     // console.log(arrAnswer);
     let [disabledYn, setDisabledYn] = useState(false);
 
-    const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], callback: ()=>{}});
+    const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], fnCallback: function(){}});
+    
+    // useEffect(()=> {
+    //   alert("!" + JSON.stringify(popup));
+    // },[popup])
 
     function cbAlertModal(props) {
         if(props === 0) { //아니오
-
+          console.log(props);
         }else { //예
             
         }
     }
     function cbFooter(idx, navigate, link) {
       
+      //빈값 밸리데이션
+      const emptyMsg = validCheckEmpty(answer);
       
+      //빈값 밸리데이션 완료 후 답안지 체크
+      if(!emptyMsg) {
+
+      }else {
+        //빈값 밸리데이션 alert
+        setPopup({
+          open: true,
+          title: "Error",
+          message: emptyMsg,
+          isHeader: false,
+          confirmBtn: ["확인"],
+          callback: cbAlertModal
+        });
+      }
+
+/*
       if(idx === 0) {
         alert(11);
       }else {
@@ -68,6 +95,7 @@ function JudgeStep1Data() {
           }
         })
       }
+*/      
     }
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -85,10 +113,10 @@ function JudgeStep1Data() {
                     {
                         jsonItemList.map(function (data, idx) {
                             return (
-                                <tr key={`tr${idx}`}>
+                                <tr key={`tr${idx}`} style={{display: (isHide[idx])?"none":"block"}}>
                                     <td key={`td${idx}`} align='left' colSpan={2}>
                                         <b>{data.id + 1}. {data.title}</b> <br />
-                                        <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx}/>
+                                        <ItemForm data={data} answer={answer} setAnswer={setAnswer} index={idx} setIsHide={setIsHide} popup={popup} setPopup={setPopup}/>
                                     </td>
                                 </tr>
                             )
@@ -133,41 +161,117 @@ function JudgeStep1Data() {
 
 function ItemForm(props) {
 
-    let [selCrdBru, setSelCrdBru] = useState("평가기관 선택");
-    let [email, setEmail] = useState(["",""]);
-    let [selEmail, setSelEmail] = useState("직접입력");
-    let [dirEmail, setDirEmail] = useState(["",""]);
-    let [stlEmailTxt, setStlEmailTxt] = useState("block");
-    let [obj1, setObj1] = useState({});
-    let [obj9, setObj9] = useState({});
+  let [selCrdBru, setSelCrdBru] = useState("평가기관 선택");
+  let [crdScore, setCrdScore] = useState(0);
+  let [email, setEmail] = useState(["",""]);
+  let [selEmail, setSelEmail] = useState("직접입력");
+  let [dirEmail, setDirEmail] = useState(["",""]);
+  let [stlEmailTxt, setStlEmailTxt] = useState("block");
+  let [obj1, setObj1] = useState({});
+  let [obj9, setObj9] = useState({});
 
-    const [age, setAge] = useState(0);
-    const handleChange = ({ target: { value } }) => setAge(value);
+  const [age, setAge] = useState(0);
+  const handleChange = ({ target: { value } }) => setAge(value);
 
-    useEffect(()=> {
+  useEffect(()=> {
+    let copy = [...props.answer];
+    copy[props.index] = email[0] + "@" + email[1];
+    props.setAnswer(copy);
+  },[email]);
+
+  useEffect(()=>{
+      let copy = [...email];
+      copy[1] = selEmail;
+      setEmail(copy);
+  },[selEmail]);
+
+  useEffect(()=> {
+    return ()=> {
       let copy = [...props.answer];
-      copy[props.index] = email[0] + "@" + email[1];
+      copy[props.data.id] = obj9;
       props.setAnswer(copy);
-    },[email]);
+    }
+  },[obj9]);
 
-    useEffect(()=>{
-        let copy = [...email];
-        copy[1] = selEmail;
-        setEmail(copy);
-    },[selEmail]);
+  const Style = {
+      backgroundColor: 'white',
+  }
 
-    useEffect(()=> {
-      return ()=> {
+  let navigate = useNavigate();
+  /**
+   * 라디오버튼 클릭이벤트시 항목별 처리
+   * @param {*} props 
+   * @param {*} idx 
+   */
+  function clickRadioBtn(props, idx) {
+    
+    //전문금융 소비자 여부 콜백
+    const cbRadio0 = (is)=> {
+      if(is != 0) {
+        props.setIsHide([false, true, true, true, true, true, true, true, true, true, true, true]);
+      }else {
+        document.querySelector("#radio01").checked = false;
         let copy = [...props.answer];
-        copy[props.data.id] = obj9;
+        copy[props.index] = 99;
         props.setAnswer(copy);
       }
-    },[obj9]);
-
-    const Style = {
-        backgroundColor: 'white',
+    }
+    //사설자금 여부 콜백
+    const cbRadio2 = (is)=>{
+      if(is != 0) {
+        navigate("/prodguide");
+      }else {
+        document.querySelector("#radio21").checked = false;
+        let copy = [...props.answer];
+        copy[props.index] = 99;
+        props.setAnswer(copy);
+      }
     }
 
+    switch(props.index) {
+      
+      case 0 : 
+        if(props.data.radioList[idx].id === 1) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: judgeData[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio0
+          });
+        }else if(props.data.radioList[idx].id === 0) {
+          props.setIsHide([false, false, false, false, false, false, false, false, false, false, false, false]);
+        }
+        break;
+      case 2 :
+        if(props.data.radioList[idx].id === 1) {
+          props.setPopup({
+            open: true,
+            title: "Error",
+            message: judgeData[props.index].msg,
+            isHeader: false,
+            confirmBtn: ["아니오", "예"],
+            callback: cbRadio2
+          });
+        }
+        break;
+      case 9 :
+        setObj9({
+          id: idx,
+          selCrdBru: selCrdBru,
+          value: ""
+        });
+    }
+    //진단리스트저장
+    let copy = [...props.answer];
+    copy[props.index] = {
+      id: props.data.radioList[idx].id,
+      value: props.data.radioList[idx].value
+    };
+    props.setAnswer(copy);
+    
+  }
     if (props.data.type == "select") {
         return (
             <Form>
@@ -180,22 +284,12 @@ function ItemForm(props) {
                                     key={`${idx}${props.idx}`}
                                     type="radio"
                                     name="radio-group"
-                                    id={data.id}
+                                    id={`radio${props.index}${idx}`}
                                     label={data.value}
                                     onClick={(e) => {
-                                        if ("on" == e.target.value) {
-                                            let obj = {
-                                                idx: props.data.id,
-                                                id: data.id,
-                                                value: data.value
-                                            }
-                                            //dispatch(changeAnswer(obj));
-                                            let copy = [...props.answer];
-                                            copy[obj.idx] = obj;
-                                            props.setAnswer(copy);
-                                        }
-
-
+                                      if ("on" === e.target.value) {
+                                        clickRadioBtn(props, idx);
+                                      }
                                     }}
                                 />
                             );
@@ -215,7 +309,7 @@ function ItemForm(props) {
                         <Form.Control
                             aria-label="Small"
                             aria-describedby="inputGroup-sizing-sm"
-                            onChange={(e)=>{
+                            onChange={(e)=> {
                               let copy = [...props.answer];
                               copy[props.index] = e.target.value;
                               props.setAnswer(copy);
@@ -236,9 +330,11 @@ function ItemForm(props) {
                             onClick={(e) => {
                                 if ("on" == e.target.value) {
                                   
-                                  let copyObj = {...obj9};
-                                  copyObj.id = 0;
-                                  setObj9(copyObj);
+                                  // let copyObj = {...obj9};
+                                  // copyObj.id = 0;
+                                  // setObj9(copyObj);
+
+                                  clickRadioBtn(props, 0);
                                 }
 
                             }} />
@@ -260,9 +356,7 @@ function ItemForm(props) {
                         </DropdownButton>
                         <Form.Control aria-label="Text input with radio button"
                           onChange={(e)=>{
-                            let copyObj = {...obj9};
-                            copyObj.value = e.target.value;
-                            setObj9(copyObj);
+                            setCrdScore(e.target.value);
                           }}/>
                         <InputGroup.Text style={Style} id="inputGroup-sizing-sm">점(1~1000점)</InputGroup.Text>
                     </InputGroup>
@@ -271,11 +365,12 @@ function ItemForm(props) {
                           onClick={(e) => {
                             if ("on" == e.target.value) {
                               
-                              let copyObj = {...obj9};
-                                  copyObj.id = 1;
-                                  copyObj.value = "잘모름"
-                                  setObj9(copyObj);
-                              }
+                              // let copyObj = {...obj9};
+                              //     copyObj.id = 1;
+                              //     copyObj.value = "잘모름"
+                              //     setObj9(copyObj);
+                              clickRadioBtn(props, 1);
+                            }
 
                           }} />
                         <InputGroup.Text style={Style} id="inputGroup-sizing-sm">잘 모름</InputGroup.Text>
@@ -365,75 +460,68 @@ function NotiModal(props) {
     );
 }
 
-function validCheckItem(answer, idx) {
+function validCheckItem(answer) {
   console.log(answer);
-  console.log(idx);
-  switch(idx) {
-    case 0 :
-      if(answer.id === 1) {
-        console.log(judgeData[0].msg);
-        return judgeData[0].msg;
+  
+  answer.forEach((data, idx) => {
+    switch(idx) {
+      case 0 :
+       
+      case 1 :
         
-      }else {        
-        return validCheckEmpty(answer, idx);
+        
+        
+      case 2 :
+        
+      // case 3 :
+      // case 4 :
+      // case 5 :
+      // case 6 :
+      // case 7 :
+      // case 8 :
+      // case 9 :
+      // case 10 :
+      case 11 :
+        let email = answer.split("@");
+        
+        return //
+        
       }
-    case 1 :
-      
-      return validCheckEmpty(answer, idx);
-      
-    case 2 :
-      if(answer.id === 1) {
-        return judgeData[0].msg;
-      }else {
-        return validCheckEmpty(answer, idx);
-      }
-    // case 3 :
-    // case 4 :
-    // case 5 :
-    // case 6 :
-    // case 7 :
-    // case 8 :
-    // case 9 :
-    // case 10 :
-    case 11 :
-      let email = answer.split("@");
-      let flag = true;
-      
-      return "신청대출 실행 후 관련 계약서류를 입력하신 고객님의 이메일주소(" + answer + ")로 제공합니다.\n이메일주소가 맞는지 한번 더 확인바랍니다.";
-      
 
-  }
+  });
 
 }
 
-function validCheckEmpty(answer, idx) {
+function validCheckEmpty(answer) {
     let title = "";
     let index = 0;
     let verb = "하시기 바랍니다.";
     let msg = "";
-
     
-    if (!answer || answer === "99") {
-        
-        title = judgeData[idx].title;
-        alert(judgeData[idx]);
-        let josa = "";
-        if (checkBatchimEnding(title)) {
-            josa = "을 ";
-        } else {
-            josa = "를 ";
-        }
-        if (idx == 1 || idx == 9 || idx == 11) {
-            verb = "입력" + verb;
-        } else {
-            verb = "선택" + verb;
-        }
+    // answer.forEach((data, idx) => {
+    for(let idx=0; idx<answer.length; idx++) {
+      if (!answer[idx] || answer[idx] === 99) {
+          
+          title = judgeData[idx].title;
+          
+          let josa = "";
+          if (checkBatchimEnding(title)) {
+              josa = "을 ";
+          } else {
+              josa = "를 ";
+          }
+          if (idx == 1 || idx == 9 || idx == 11) {
+              verb = "입력" + verb;
+          } else {
+              verb = "선택" + verb;
+          }
 
-        msg = title + josa + verb;
-        return msg;
-    }else {
-        return null;
+          msg = title + josa + verb;
+          return msg;
+      }
     }
+    return msg;
+    
     
 }
 
@@ -453,8 +541,7 @@ function checkBatchimEnding(word) {
     return (uni - 44032) % 28 != 0;
 }
 
-function test(arg1) {
-  alert(arg1);
-}
+
+
 
 export default JudgeStep1Data;
