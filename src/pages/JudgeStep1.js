@@ -29,7 +29,7 @@ function JudgeStep1Data() {
   }, [answer]);
 
   const jsonItemList = judgeData;
-  const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], fnCallback: function(){}});
+  const [popup, setPopup] = useState({open: false, title: "", message: "", isHeader: false, confirmBtn:[], callback: function(){}});
 
   function cbAlertModal(props) {
     if(props === 0) { //아니오
@@ -123,7 +123,7 @@ return (
       callbackId: cbFooter
     }} ></Footer>
     <NotiModal show={show} handleClose={handleClose} handleShow={handleShow}></NotiModal>
-    <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} confirmBtn={popup.confirmBtn} callback={popup.fnCallback}/>
+    <AlertModal open={popup.open} setPopup={setPopup} message={popup.message} title={popup.title} isHeader={popup.isHeader} confirmBtn={popup.confirmBtn} callback={popup.callback}/>
   </>
 );
 }
