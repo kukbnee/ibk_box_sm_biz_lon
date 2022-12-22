@@ -3,10 +3,10 @@ import './App.css';
 import ProdGuide from './pages/ProdGuide.js'
 import CstInfoAdd from './pages/CstInfoAdd.js';
 import PreGuide from './pages/PreGuide.js';
-import JudgeStep1 from './pages/JudgeStep1.js'
-import JudgeStep2 from './pages/JudgeStep2.js'
-import JudgeStep3 from './pages/JudgeStep3.js'
-import CsInfoAgree from './pages/CsInfoAgree.js'
+import JudgeStep1 from './pages/JudgeStep1.js';
+import JudgeStep2 from './pages/JudgeStep2.js';
+import JudgeStep3 from './pages/JudgeStep3.js';
+import CsInfoAgree from './pages/CsInfoAgree.js';
 import CsInfoAgree2 from './pages/CsInfoAgree2.js';
 import DocCollectList from './pages/DocCollectList.js';
 import JudgeResult from './pages/JudgeResult.js';
@@ -20,6 +20,11 @@ import LoanCheck3 from './pages/LoanCheck3.js';
 import LoanFail1 from './pages/LoanFail1.js';
 import LoanFail2 from './pages/LoanFail2.js';
 import LoanCancle from './pages/LoanCancle.js';
+import StartLoan1 from './pages/StartLoan1.js';
+import StartLoan2 from './pages/StartLoan2.js';
+import LoanContract from './pages/LoanContract.js';
+import LoanClause from './pages/LoanClause.js';
+import LoanEnd from './pages/LoanEnd.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 
@@ -87,10 +92,26 @@ function App() {
       }} to="/loanfail1">신청중인 대출 진행/조회/취소 (보증거절1)</Link> ▷ ▶
       <Link onClick={() => {
 
-}} to="/loanfail2">신청중인 대출 진행/조회/취소 (검증거절2)</Link> ▷ ▶
+      }} to="/loanfail2">신청중인 대출 진행/조회/취소 (검증거절2)</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/loancancle">보증신청 취소</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/startloan1">대출 실행1</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/startloan2">대출 실행2</Link> ▷ ▶
+      <Link onClick={() => {
+
+      }} to="/loancontract">여신거래약정서</Link> ▷ ▶
+      <Link onClick={() => {
+
+}} to="/loanclause">대출약관</Link> ▷ ▶
 <Link onClick={() => {
 
-}} to="/loancancle">보증신청 취소</Link> ▷ ▶
+}} to="/loanend">대출실행완료</Link> ▷ ▶
+
 
 
       <Link onClick={() => {
@@ -117,6 +138,11 @@ function App() {
         <Route path="/loanfail1" element={<LoanFail1 />} />
         <Route path="/loanfail2" element={<LoanFail2 />} />
         <Route path="/loancancle" element={<LoanCancle />} />
+        <Route path="/startloan1" element={<StartLoan1 />} />
+        <Route path="/startloan2" element={<StartLoan2 />} />
+        <Route path="/loancontract" element={<LoanContract />} />
+        <Route path="/loanclause" element={<LoanClause />} />
+        <Route path="/loanend" element={<LoanEnd />} />
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </div>

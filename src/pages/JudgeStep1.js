@@ -48,7 +48,6 @@ function JudgeStep1Data() {
     }
     function cbFooter(idx, navigate, link) {
       
-      
       if(idx === 0) {
         alert(11);
       }else {
@@ -75,7 +74,6 @@ function JudgeStep1Data() {
 
     return (
         <>
-         
                 <h2 >
                     심사준비 1단계
                 </h2>
@@ -194,8 +192,6 @@ function ItemForm(props) {
                                             copy[obj.idx] = obj;
                                             props.setAnswer(copy);
                                         }
-
-
                                     }}
                                 />
                             );
@@ -227,7 +223,6 @@ function ItemForm(props) {
                 </>
             );
         } else if (props.data.id == 9) {
-            
 
             return (
                 <>

@@ -23,7 +23,9 @@ function Header(props) {
     arrStepNm = cmmData("judgeStepNm");
   }else if(props.pageId === 6) {
     arrStepNm = cmmData("loanStepNm");
-  }  
+  }else if(props.pageId === 7) {
+    arrStepNm = cmmData("loanStepNm");
+  }    
 
   let [pageShow, setPageShow] = useState(false);
   let [stepShow, setStepShow] = useState(false);

@@ -7,20 +7,21 @@ import data from '../json/StartLoanData.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 
-function StartLoan() {
+function StartLoan1() {
 
     let jsonItemList = [];
     jsonItemList = data;
 
     return (
         <>
-            <Header pageId={6} />
+            <Header pageId={6} stepCd={1}/>
+
             <Table >
                 <br />
                 <div align='left'>
                     <h4><b>보증승인정보</b></h4>
                 </div>
-                {
+            {   
             jsonItemList.map(function (data, idx) {
               return (
                 <tbody align='left'>
@@ -49,4 +50,4 @@ function StartLoan() {
     )
 }
 
-export default StartLoan;
+export default StartLoan1;
