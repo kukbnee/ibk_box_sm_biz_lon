@@ -65,7 +65,7 @@ const pageList = [
     {
         id: 7,
         name: "대출실행",
-      }
+    }
 
 ];
 const crdBruList = [
