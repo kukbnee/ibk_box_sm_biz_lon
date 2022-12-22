@@ -1,0 +1,44 @@
+import Table from 'react-bootstrap/Table';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './Header.js';
+import { useCallback, useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import data from '../json/LoanClauseData.js'
+import File from '../test/test.txt';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+
+
+function LoanClause() {
+
+    const jsondata = data;
+
+    return (
+        <>
+            <Header pageId={6} stepCd={4} />
+            <Table>
+                <div align='left'>
+                    <h4><b>대출약관 안내</b></h4>
+                </div><br />
+                <div style={{ backgroundColor: 'lightgray' }} >기업대출 상품설명서, 여신거래약정서 및 은행여신거래 기본약관 등을 제공하오니 참고하시기 바랍니다.</div>
+                <tbody>
+                    {jsondata.map(function (data, idx) {
+                        return (<tr align='left'>
+                            <td>
+
+                                {data.name}
+                            </td>
+                            {/* href에 경로 download에 파일이름 */}
+                            <a href={File} download="test.txt"><img src='/floppy-disk.png' style={{ width: 30 }}/></a>
+                            <td>
+                            </td>
+
+                        </tr>)
+                    })}
+                </tbody>
+
+            </Table>
+        </>
+    )
+}
+export default LoanClause;

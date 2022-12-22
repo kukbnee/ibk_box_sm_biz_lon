@@ -1,4 +1,3 @@
-import PreJudgeInfoAddCss from '../css/PreJudgeInfoAdd.css';
 import { Table } from "react-bootstrap";
 import Header from "./Header.js";
 import data from '../json/preJudgeInfoAddData.js';

@@ -36,7 +36,7 @@ https://www.ibk.co.kr/fup/customer/form/2022053115201429260014431270238.pdf
 최근 1년 이내 대표자(실제경영자)가 변경된 경우 신청이 불가합니다.
 */
 const arrJudgeStepNm = ["정보제공동의", "본인인증", "서류수집", "서류전송현황", "정보입력", "사전심사신청"];
-const arrLoanStepNm = [""];
+const arrLoanStepNm = ["보증승인정보","대출신청내역","여신거래약정","대출약관","대출실행"];
 const pageList = [
     {
       id: 1,
@@ -61,7 +61,11 @@ const pageList = [
     {
       id: 6,
       name: "대출신청",
-    }
+    },
+    {
+        id: 7,
+        name: "대출실행",
+      }
 
 ];
 const crdBruList = [
