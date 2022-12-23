@@ -1,14 +1,23 @@
 .judgedocument{
-    margin-top: 2%;
-    width: 30%;
-    margin-left: 35%;
+    margin-top: 5%;
+    width: 100%;
+    margin-left: 2%;
+    padding-left: -1px;
+    margin-right: -4px;
 }
 .question{
-    margin-left: 26%;
-    width: 50%;
-    padding: 0px;
+    width: 98%;
     text-align: left;
 }
 .refresh{
-    margin-left: 20%;
+    width:90px;
+    margin-right:10px;
+    margin-bottom: 20%;
+}
+.today{
+    font-size:125%;
+}
+.ResultCheck{
+    margin-left: -4%;
+    width:140%;
 }

@@ -1,13 +1,14 @@
-.ProdGuideCss{
-    width: 50%;
-    margin-left: 23%;
+.ProdGuidetable{
+    width: 60%;
+    margin-left: 2%;
     margin-top: 2%;
 }
 .ProdGuideh2{
     margin-top: 5%;
     white-space:nowrap;
-    margin-left: 230%;
+    margin-left: 100%;
 }
 .ProGuidebutton {
-    width: 530%;
+    display: block;
+    width: 296%
 }

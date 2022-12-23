@@ -92,20 +92,21 @@ return (
             )
           })
         }
-        <Accordion >
+        <Accordion className='headerAccordion'>
           <Accordion.Item eventKey="0">
-            <Accordion.Header><b>유의사항</b></Accordion.Header>
+            <Accordion.Header ><b>유의사항</b></Accordion.Header>
             <Accordion.Body className='Noticon'>
-              
+        <div className='JudgeAccordion'>
               <tr>
                 <td>
                   ㆍ보유자산, 부채 항목은 작성일 기준 / 현재소득은 최근 1년기준으로 작성<br />
                   ㆍ본 확인서는 『금융소비자 보호에 관한 법률』 제17조 및 제18조에 따라 작성되었습니다.
                 </td>
               </tr>
+              </div>
               <tr>
                 <td>
-                  <Button className='showcontent' style={{width: 480, marginLeft: 10}} variant="primary" onClick={() => { handleShow() }}>내용보기</Button>
+                  <Button style={{width:300, marginLeft:10}} variant="primary" onClick={() => { handleShow() }}>내용보기</Button>
                 </td>
               </tr>
               <tr>
@@ -113,6 +114,7 @@ return (
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
+
       </tbody>
     </Table>
     <Footer obj={{
@@ -263,6 +265,8 @@ function ItemForm(props) {
               <Form.Control
                 aria-label="Small"
                 aria-describedby="inputGroup-sizing-sm"
+                type='number'
+                max='99'
                 onChange={(e)=> {
                   let copy = [...props.answer];
                   copy[props.index] = e.target.value;

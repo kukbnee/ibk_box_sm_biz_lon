@@ -1,3 +1,4 @@
+import LoanCheck2Css from '../css/LoanCheck2.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header.js';
@@ -16,17 +17,18 @@ function LoanCheck2() {
     return (
         <>
             <Header pageId={5} />
-            <Table >
+            <Table className='LoanCheck2Table'>
                 <br />
                 <div align='left'>
                     <h4><b>진행 현황</b></h4>
                 </div><br />
-                <div align='left'>
-                    <div><b>사전심사접수</b>사전심사 - <b>보증심사</b> - 심사완료</div>
+                <div className='LoanCheck2Parent'>
+                    <div className='LoanCheck2ChildLeft'><b>사전심사접수</b></div><div className='LoanCheck2Right'>사전심사 - <b>보증심사</b> - 심사완료</div>
                 </div>
                 <br />
-                <br />
-                <div>사업장 현장 실사 및 심사 예정</div>
+                <div className='LoanCheck2boxdiv'>
+                <div className='OnsiteAudit'><b>사업장 현장 실사 및 심사 예정</b></div>
+                </div>
                 <br />
                 <br />
                 <tbody align='left'>

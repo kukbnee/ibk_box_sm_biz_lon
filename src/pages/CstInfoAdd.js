@@ -1,4 +1,4 @@
-import CstInfoAddcss from '../css/CstInfoAdd.css';
+import CsInfoAddCss from '../css/CstInfoAdd.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import data from '../json/cstinfoAddData';
@@ -12,9 +12,9 @@ function CstInfoAdd() {
 
   return (
     <>
-      <Table className='CstInfoAddcss'>
+      <Table className='cstinfomain'>
 
-        <h2 className='CstInfoAddcssh2'>고객 정보 등록</h2>
+        <h4 className='csinfotitle'><b>고객 정보 등록</b></h4>
 
         <tbody>
           {

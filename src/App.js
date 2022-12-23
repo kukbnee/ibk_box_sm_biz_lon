@@ -25,6 +25,7 @@ import StartLoan2 from './pages/StartLoan2.js';
 import LoanContract from './pages/LoanContract.js';
 import LoanClause from './pages/LoanClause.js';
 import LoanEnd from './pages/LoanEnd.js';
+
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 
 
@@ -111,6 +112,7 @@ function App() {
 <Link onClick={() => {
 
 }} to="/loanend">대출실행완료</Link> ▷ ▶
+
 
 
 

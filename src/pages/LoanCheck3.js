@@ -1,3 +1,4 @@
+import LoanCheck3Css from '../css/LoanCheck3.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header.js';
@@ -16,17 +17,18 @@ function LoanCheck3() {
     return (
         <>
             <Header pageId={5} />
-            <Table >
+            <Table className='LoanCheck3Table'>
                 <br />
                 <div align='left'>
                     <h4><b>진행 현황</b></h4>
                 </div><br />
-                <div align='left'>
-                    <div><b>사전심사접수</b>사전심사 - 보증심사 - <b>심사완료</b></div>
+                <div className='LoanCheck3Parent'>
+                    <div className='LoanCheck3ChildLeft'><b>사전심사접수</b></div><div className='LoanCheck3Right'>사전심사 - 보증심사 - <b>심사완료</b></div>
                 </div>
                 <br />
-                <br />
-                <div>아래 대출실행 버튼을 눌러 진행해주세요.</div>
+                <div className='LoanCheck3boxdiv'>
+                <div className='LoanProgress'><b>아래 대출실행 버튼을 눌러 진행해주세요.</b></div>
+                </div>
                 <br />
                 <br />
                 <tbody align='left'>

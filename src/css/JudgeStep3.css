@@ -1,7 +1,7 @@
 .TotalSection3{
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 2%;
+    width: 100%;
+    margin-left: 2%;
+    margin-top: 5%;
     
 
 }
@@ -10,6 +10,11 @@
     margin-left: 25%;
 }
 .nextButton{
-    width: 128%;
-    
+    margin-right:5%;
+    width: 125%;
+}
+.JudgeStep1agree{
+    margin-left: -5%;
+    text-align: center;
+    width:130%;
 }

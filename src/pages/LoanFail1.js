@@ -1,3 +1,4 @@
+import LoanFail1Css from '../css/LoanFail1.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header.js';
@@ -13,18 +14,18 @@ function LoanFail1() {
     return (
         <>
             <Header pageId={5} />
-            <Table >
+            <Table className='LoanFail1Table'>
                 <br />
                 <div align='left'>
                     <h4><b>진행 현황</b></h4>
                 </div><br />
-                <div align='left'>
-                    <div><b>사전심사접수</b>사전심사 - 보증심사 - <b>심사완료</b></div>
+                <div className='LoanFail1Parent'>
+                    <div className='LoanFail1ChildLeft'><b>사전심사접수</b></div><div className='LoanFail1ChildRight'>사전심사 - 보증심사 - <b>심사완료</b></div>
                 </div>
                 <br />
-                <br />
-                <div>심사조건을 충족하지 않았습니다.</div>
-                <br />
+                <div className='LoanFail1boxdiv'>
+                <div className='NotCondition'><b>심사조건을 충족하지 않았습니다.</b></div>
+                </div>
                 <br />
                 <tbody align='left'>
                     <tr >
@@ -47,7 +48,6 @@ function LoanFail1() {
                         <td>담당자(연락처)</td>
                         <td>김보증(XXX-XXXX-XXXX)</td>
                     </tr>
-
                 </tbody>
             </Table>
             <div style={{ color: 'red' }}><b>[유의사항]</b></div>

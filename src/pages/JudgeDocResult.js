@@ -21,12 +21,13 @@ function JudgeDocResult() {
             <Header pageId={4} stepCd={4} />
             <Table className='judgedocument'>
                 <tr align='left'>
-                    <h3><b>사전심사 서류 수집 현황</b></h3><br/>
+                    <h4 className='today'><b>사전심사 서류 수집 현황</b></h4><br/>
                     <td><Button className='refresh' variant="outline-primary" onClick={reload}>새로고침</Button></td>
-                </tr>               
-                <tr align='left'>
-                    <td style={{ backgroundColor: 'lightCyan' }}>사전심사 서류 수집 여부를 확인합니다.</td>
                 </tr>
+                <div className='ResultCheck'>
+                    <h5 style={{ backgroundColor: 'LightCyan'}}>사전심사서류 수집 여부를 확인합니다.</h5>
+                </div>   
+                
                 <br/>
                 <tbody align='left'>
                 {
@@ -39,9 +40,9 @@ function JudgeDocResult() {
                     </tr>
                     )})}
                 </tbody>
+                
 
             </Table>
-            <br/>
             <div className='question'>
             <tr>
             <ul>

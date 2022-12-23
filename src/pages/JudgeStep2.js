@@ -108,7 +108,7 @@ function JudgeStep2() {
                 }}
                     checked={checkedButtons.includes('check') ? true : false}></input></div>
             <div>동의합니다.</div>
-            <div><Button
+            <div><Button className='selfcheck'
                 variant='primary'
                 id='button'
                 disabled= {disabled}>

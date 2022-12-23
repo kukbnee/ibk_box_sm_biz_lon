@@ -11,7 +11,6 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 
 function LoanClause() {
 
-    console.log("asdfsadf")
     const jsondata = data;
 
     return (
@@ -26,14 +25,14 @@ function LoanClause() {
                     {jsondata.map(function (data, idx) {
                         return (<tr align='left'>
                             <td>
-
                                 {data.name}
                             </td>
-                            {/* href에 경로(import를 해주어야함) download에 파일이름
+                            {/* TODO : href에 경로(import를 해주어야함) download에 파일이름
                             a href는 폴더 안에 있는경로에 있는 파일을  download에 있는값으로
-                            다운로드함*/}
-                            <a href={File} download=""><img src='/floppy-disk.png' style={{ width: 30 }}/></a>
+                            다운로드함  추후 업데이트(url경로 받았을때 로직 새로 업데이트 해야함)*/}
+                            <a href={File} download=""><img src='/floppy-disk.png' style={{ width: 30 }} /></a>
                             <td>
+                                
                             </td>
 
                         </tr>)

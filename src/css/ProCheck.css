@@ -1,16 +1,44 @@
-.boxdiv{
+.ProCheckboxdiv{
     border: solid 1px rgb(21, 136, 189);
-    margin-left: 25%;
-    font-size: larger;
+    margin-left:9%;
+    margin-top: 10%;
+    width: 300px;
+    height:170px;
+    margin-bottom: 5%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
-.check{
-    margin-left: 30%;
-    width: 40%;
+.CheckPro{
+    margin-left: 3%;
+    width: 100%;
 }
-.danger{
-    display:table;
+.inappropriate{
+    font-size: normal;
+    width: 250px;
+    height: 100px;
 }
-.ggg{
-    width: 13%;
+.ProCheckoption{
+    padding-left: 20px;
+}
 
+.ProChecktd{
+   display: inline-block;
+   line-height: 25px;
+}
+.ProCheckParent{
+    float:center;
+    width: 120%;
+    justify-content: space-between;
+    align-items: left;
+}
+.ProCheckChildLeft{
+    float: left;
+    flex:3px;
+    text-align:left;
+    color:aqua;
+}
+.ProCheckChildRight{
+    align-self: flex-end;
+    color:black;
 }
