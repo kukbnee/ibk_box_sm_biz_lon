@@ -22,7 +22,7 @@ function DocCollectList() {
             <Header pageId={4} stepCd={3} />
             <Table className='document5'>
                 <tbody>
-                    <h3><b>서류수집내역</b></h3>
+                    <h3 className='collecttitle'><b>서류수집내역</b></h3>
                     <br/>
                     <tr>
                         <td>

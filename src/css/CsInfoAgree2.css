@@ -1,8 +1,8 @@
 .document3{
     text-align: left;
-    width: 40%;
-    margin-left: 30%;
-    margin-top: 3%;
+    width: 100%;
+    margin-left: 2%;
+    margin-top: 4%;
     font-size: larger;
 }
 .document4{
@@ -15,8 +15,7 @@ span2{
     font-size: 125%;
 }
 
-li{
-    text-indent: 0px;
-    padding-left: 20px;
+.document2{
+    padding-left: 0px;
 }
 /* 수정 */

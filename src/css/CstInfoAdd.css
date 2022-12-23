@@ -1,17 +1,15 @@
-.CstInfoAddcss{
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 2%;
-    text-align: left;
-
+.cstinfomain{
+    width: 111%;
+    font-size: 77%;
+    border-collapse: collapse;
+    padding-left: inherit;
+    margin-left: -10%;    
 }
-.CstInfoAddcssh2{
+.csinfotitle{
     margin-top: 5%;
-    text-align: center;
-    margin-left: 40%;
-
+    white-space:nowrap;
+    margin-left: 62%;
 }
-.CstInfoAddbutton {
-    width: 155%;
+.CstInfoAddbutton{
+    width: 165%
 }
-

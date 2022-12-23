@@ -26,9 +26,9 @@ function PreGuide() {
     
     
     return (
-        <Table className='PreGuideCss'>
+        <Table className='preguidemain'>
             <thead>
-                <h2 className='PreGuideh2'>대출신청 전 사전안내</h2>
+                <h4 className='PreGuideh4'>대출신청 전 사전안내</h4>
                 
             </thead>
             <tbody>
@@ -37,7 +37,7 @@ function PreGuide() {
                     <th>준비 사항</th>
                 </tr>
                 <tr>
-                    <td> [ 본인확인 ] </td>
+                    <td>[ 본인확인 ]</td>
                     <td>본인 명의 휴대전화</td>
                 </tr>
                 <tr>

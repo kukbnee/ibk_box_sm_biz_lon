@@ -11,7 +11,7 @@ function ProdGuide() {
     jsonDetail = data;
 
     return (
-      <Table className='ProdGuideCss'>
+      <Table className='ProdGuidetable'>
         <thead>
         <h2 className='ProdGuideh2'>상품 안내</h2>
           

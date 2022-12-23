@@ -33,9 +33,11 @@ function JudgeStep3() {
   return (
     <>
     <Header pageId={4} stepCd={1}/>
-    <Table className="TotalSection">
-        <h2>정보제공동의 [필수] </h2>
-          <b>대출 약정신청을 위해 아래 내용을 충분히 이해하신 후 동의하시기 바랍니다.</b>
+    <Table className="TotalSection3">
+        <h2>정보제공동의 [필수] </h2><br/>
+        <div className='JudgeStep1agree'>
+          <h6 style={{backgroundColor: 'LightCyan'}}><b>대출 약정신청을 위해 아래 내용을 충분히 이해하신 후 동의하시기 바랍니다.</b></h6>
+          </div>
       <tbody>
         {
           jsonItemList.map(function (data, idx) {
@@ -66,7 +68,7 @@ function JudgeStep3() {
         }
         <tr>
                 <td>
-                    <Button variant="primary">다음</Button>
+                    <Button className='nextButton' variant="primary">다음</Button>
                 </td>
             </tr>
       </tbody>
