@@ -23,8 +23,8 @@ function CsInfoAgree() {
             <Header pageId={4} stepCd={1} />
             <Table className='document1'>
                 <tr align='left'>
-                    <td><b><div className='agree'>고객정보 조회 위임 동의 <h5 style={{color: 'blue', display: 'inline'}}>[필수]</h5></div></b></td>
-                    <td><Button id='showcontent' style={{display: 'inline'}}variant="outline-primary" onClick={() => { handleShow() }}>내용보기</Button></td><br/>
+                    <td><b><div className='agreetitle'>고객정보 조회 위임 동의 <h5 style={{color: 'blue', display: 'inline'}}>[필수]</h5></div></b></td>
+                    <td><Button className='showcontent' variant="outline-primary" onClick={() => { handleShow() }}>내용보기</Button></td><br/>
                 </tr>
                 <tr align='left'>
                     <td><b>서류수집기관 : 정부24</b></td>
@@ -33,14 +33,14 @@ function CsInfoAgree() {
                     <td>&nbsp;정부24에서 서류를 수집하여 기업은행에 제출합니다.</td>
                 </tr><br/>
                 <tr align='left'>
-                    <td><b>정부24에서 등록되어있는 개인용 공동인증서</b>(금융 결제원 발급분만 가능, 범용인<div id="div_1">증서 불가)가 필요합니다.</div></td>
+                    <td><b>정부24에서 등록되어있는 개인용 공동인증서</b>(금융 결제원 발급분만 가능, 범용인증서 불가)가 필요합니다.</td>
                 </tr><br/>
 
                 <div className='document2'>
                 <tr align='left'>
                 <ul>
                     <tr>
-                    <li><td style={{ color: 'red'}}>개인용 공동인증서를</td><td>&nbsp;&nbsp;준비해주세요.</td></li>
+                    <li><td style={{ color: 'red'}}>개인용 공동인증서를</td><td>준비해주세요.</td></li>
                     </tr><br/>
                     <tr>
                     <li><td>먼저 정부24 회원가입 및 개인공동인증서 등록 필요합니다.</td></li>

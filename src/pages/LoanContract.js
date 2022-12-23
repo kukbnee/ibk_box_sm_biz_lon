@@ -1,3 +1,4 @@
+import LoanContractCss from '../css/LoanContract.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header.js';
@@ -29,7 +30,7 @@ function LoanContract() {
       <Header pageId={6} stepCd={3} />
       <Table >
         <div align='left'>
-          <h4><b>여신거래약정</b></h4>
+          <h4 className='LoanContractTitle'><b>여신거래약정</b></h4>
         </div><br />
         <tbody align='left'>
           {jsondata.map(function (data, idx) {
