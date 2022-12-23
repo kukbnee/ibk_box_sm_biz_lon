@@ -1,3 +1,4 @@
+import StartLoan2Css from '../css/StartLoan2.css';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header.js';
@@ -19,7 +20,7 @@ function StartLoan2() {
             <Header pageId={6} stepCd={2}/>
             <Table>
                 <div align='left'>
-                    <h4><b>대출신청내역</b></h4>
+                    <h4 className='StartLoan2Title'><b>대출신청내역</b></h4>
                 </div>
                 {jsondata.map(function (data, idx) {
                     return (
